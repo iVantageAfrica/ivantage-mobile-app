@@ -41,7 +41,7 @@
     "android": {
       "package": "africa.ivantage.microfinance.app",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "versionCode": 21,

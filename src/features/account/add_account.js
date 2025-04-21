@@ -1,16 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native'
-import { Platform } from 'react-native';
 import { useValidation } from 'react-native-form-validator';
-import styles from './styles'
-import Theme from '../../themes';
 import Shared from '../../themes/shared';
 import { useAuthentication } from "../../queries/useAuthentication";
-import { Box, VStack, Stack, Radio, Checkbox, HStack, Center, FormControl, Select, WarningOutlineIcon, Input, Button, Heading, ScrollView, Text, KeyboardAvoidingView } from "native-base";
+import { Box, VStack, Center, FormControl, WarningOutlineIcon, Input, Button, Heading, ScrollView, Text } from "native-base";
 import AlertBox from '../../components/alertbox';
-import Config from '../../common/config'
-import Utils from '../../common/utils'
-import { useUser } from '../../context/usercontext'
 import OTPInput from '../../components/otp';
 
 

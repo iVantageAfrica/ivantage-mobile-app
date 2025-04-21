@@ -1,14 +1,17 @@
 {
   "expo": {
-    "owner": "richardboyewa",
-    "name": "Imperial+",
-    "slug": "ivantage-mobile-rn",
-    "version": "7.3.0",
+    "owner": "eniolaipoola",
+    "name": "Ivantage Microfinance App",
+    "slug": "ivantage-microfinace-app",
+    "version": "1.0.0",
     "orientation": "portrait",
     "jsEngine": "hermes",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "splash": {
       "image": "./assets/splash-imperial.png",
       "resizeMode": "cover",
@@ -21,7 +24,9 @@
       "enabled": true,
       "url": "https://u.expo.dev/a05dc75a-0aa1-433b-afea-ad8f24e8e67a"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "buildNumber": "12.0.0",
@@ -33,7 +38,9 @@
         "NSPrivacyAccessedAPITypes": [
           {
             "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
-            "NSPrivacyAccessedAPITypeReasons": ["CA92.1"]
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
           }
         ]
       }
@@ -60,7 +67,7 @@
       "client_display_name": "Imperial",
       "client_account_opening_display_text": "Open an Imperial+ Account and start saving towards your equity",
       "eas": {
-        "projectId": "a05dc75a-0aa1-433b-afea-ad8f24e8e67a"
+        "projectId": "0b0adf2f-43d6-45d6-abfb-66c4d5edf175"
       }
     },
     "plugins": [

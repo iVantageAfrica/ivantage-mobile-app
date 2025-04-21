@@ -7,75 +7,75 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import { Feather } from '@expo/vector-icons';
 
-import Landing from '../../src/views/landing';
-import LoginScreen from '../../src/views/auth/login';
-import ResetPasswordScreen from '../../src/views/auth/password_reset';
-import SuccessScreen from '../../src/views/generics/success';
-import BlankScreen from '../../src/views/generics/blank';
-import OTPScreen from '../../src/views/auth/otp';
-import SignUpScreen from '../../src/views/auth/signup';
-import AccountIntroScreen from '../../src/views/account/index';
-import CreateAccountScreen from '../../src/views/account/create';
-import AccountDocumentScreen from '../../src/views/account/documents';
-import FundAcctScreen from '../../src/views/account/fund';
-import FundWebView from '../../src/views/account/fund_webview';
-import AddAccountScreen from '../../src/views/account/add_account';
-import CardRequestScreen from '../../src/views/transfer/card_request';
+import Landing from '../../src/features/landing';
+import LoginScreen from "../../src/features/auth/login";
+import ResetPasswordScreen from "../../src/features/auth/password_reset";
+import SuccessScreen from "../../src/features/generics/success";
+import BlankScreen from "../../src/features/generics/blank";
+import OTPScreen from "../../src/features/auth/otp";
+import SignUpScreen from "../../src/features/auth/signup";
+import AccountIntroScreen from "../../src/features/account/index";
+import CreateAccountScreen from "../../src/features/account/create";
+import AccountDocumentScreen from "../../src/features/account/documents";
+import FundAcctScreen from "../../src/features/account/fund";
+import FundWebView from "../../src/features/account/fund_webview";
+import AddAccountScreen from "../../src/features/account/add_account";
+import CardRequestScreen from "../../src/features/transfer/card_request";
 
-import AppHome from '../views/dashboard/home_new';
-import TransactionSummaryScreen from '../views/dashboard/transaction_summary';
-import AffordabilityCalculatorScreen from '../views/properties/affordability_calculator';
-import AffordabilityListingScreen from '../views/properties/affordability_listing';
-import NewMortgageScreen from '../views/mortgage/create';
-import PropertyListingScreen from '../views/properties/listing';
-import FilterViewScreen from '../views/properties/filter_view';
-import PropertyDetailScreen from '../views/properties/property_detail';
-import MoreScreen from '../views/more/morepage';
-import AccountManagerScreen from '../views/transfer/account_manager';
+import AppHome from "../features/dashboard/home_new";
+import TransactionSummaryScreen from "../features/dashboard/transaction_summary";
+import AffordabilityCalculatorScreen from "../features/properties/affordability_calculator";
+import AffordabilityListingScreen from "../features/properties/affordability_listing";
+import NewMortgageScreen from "../features/mortgage/create";
+import PropertyListingScreen from "../features/properties/listing";
+import FilterViewScreen from "../features/properties/filter_view";
+import PropertyDetailScreen from "../features/properties/property_detail";
+import MoreScreen from "../features/more/morepage";
+import AccountManagerScreen from "../features/transfer/account_manager";
 
-import IVantageTab from '../views/dashboard/ivantage_account';
-import SavingsTab from '../views/dashboard/account_detail';
-import InvestmentTab from '../views/dashboard/investment_account';
-import MortgageTab from '../views/dashboard/mortgage_account';
+import IVantageTab from "../features/dashboard/ivantage_account";
+import SavingsTab from "../features/dashboard/account_detail";
+import InvestmentTab from "../features/dashboard/investment_account";
+import MortgageTab from "../features/dashboard/mortgage_account";
 
-import BillsScreen from '../views/bills/home';
-import BillersScreen from '../views/bills/billers';
-import PackagesScreen from '../views/bills/packages';
-import PurchaseScreen from '../views/bills/purchase';
+import BillsScreen from "../features/bills/home";
+import BillersScreen from "../features/bills/billers";
+import PackagesScreen from "../features/bills/packages";
+import PurchaseScreen from "../features/bills/purchase";
 
-import TransactionHistoryScreen from '../views/dashboard/transaction_history';
-import TransactionPINScreen from '../views/more/transaction_pin';
+import TransactionHistoryScreen from "../features/dashboard/transaction_history";
+import TransactionPINScreen from "../features/more/transaction_pin";
 
-import TransferHomeScreen from '../views/transfer/home'
-import TransferMenuScreen from '../views/transfer/menu'
-import TransferToOwnAcctScreen from '../views/transfer/to_own_account'
-import TransferToOtherAcctScreen from '../views/transfer/to_other_account'
-import BeneficiariesScreen from '../views/transfer/beneficiaries'
-import TransferOTPScreen from '../views/transfer/otp'
+import TransferHomeScreen from "../features/transfer/home";
+import TransferMenuScreen from "../features/transfer/menu";
+import TransferToOwnAcctScreen from "../features/transfer/to_own_account";
+import TransferToOtherAcctScreen from "../features/transfer/to_other_account";
+import BeneficiariesScreen from "../features/transfer/beneficiaries";
+import TransferOTPScreen from "../features/transfer/otp";
 
-import NewInvestmentScreen from '../views/investment/new_investment'
-import AddToDealScreen from '../views/investment/add_to_deal'
-import LiquidationMenuScreen from '../views/investment/liquidate_menu'
-import PartialLiquidationScreen from '../views/investment/liquidation_partial'
-import FullLiquidationScreen from '../views/investment/liquidation_full'
+import NewInvestmentScreen from "../features/investment/new_investment";
+import AddToDealScreen from "../features/investment/add_to_deal";
+import LiquidationMenuScreen from "../features/investment/liquidate_menu";
+import PartialLiquidationScreen from "../features/investment/liquidation_partial";
+import FullLiquidationScreen from "../features/investment/liquidation_full";
 
-import FAQScreen from '../views/more/faq'
-import ProfileScreen from '../views/more/profile'
-import FeedbackScreen from '../views/more/feedback';
+import FAQScreen from "../features/more/faq";
+import ProfileScreen from "../features/more/profile";
+import FeedbackScreen from "../features/more/feedback";
 
-import AffiliateOnboardingScreen from '../views/affiliate/onboard';
-import AffiliateReferralsScreen from '../views/affiliate/referrals';
+import AffiliateOnboardingScreen from "../features/affiliate/onboard";
+import AffiliateReferralsScreen from "../features/affiliate/referrals";
 
-import BVNValidationScreen from '../views/verifications/bvn';
+import BVNValidationScreen from "../features/verifications/bvn";
 
 
 import Theme from '../themes'
-import TransferLimitScreen from '../views/more/transfer_limit';
+import TransferLimitScreen from "../features/more/transfer_limit";
 
-import HomeVestLanding from '../views/homevest';
-import HomeVestPropertyScreen from '../views/homevest/property';
-import CreateHomeVestScreen from '../views/homevest/create';
-import HomeVestDashboardScreen from '../views/homevest/dashboard';
+import HomeVestLanding from "../features/homevest";
+import HomeVestPropertyScreen from "../features/homevest/property";
+import CreateHomeVestScreen from "../features/homevest/create";
+import HomeVestDashboardScreen from "../features/homevest/dashboard";
 
 const SavingScreenStack = createNativeStackNavigator();
 const MoreScreenStack = createNativeStackNavigator();
