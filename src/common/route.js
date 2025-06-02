@@ -58,7 +58,6 @@ import AddToDealScreen from '../views/investment/add_to_deal'
 import LiquidationMenuScreen from '../views/investment/liquidate_menu'
 import PartialLiquidationScreen from '../views/investment/liquidation_partial'
 import FullLiquidationScreen from '../views/investment/liquidation_full'
-
 import FAQScreen from '../views/more/faq'
 import ProfileScreen from '../views/more/profile'
 import FeedbackScreen from '../views/more/feedback';
@@ -86,8 +85,8 @@ const deviceWidth = Math.ceil(Dimensions.get('screen').width)
 
 const defaultPageHeader = (title) => {
     return {
-        headerShown: true, title, headerTintColor: '#ffffff', headerStyle: {
-            backgroundColor: Theme.Colors.backgroundColor
+        headerShown: true, title, headerTintColor: Theme.Colors.primaryText, headerStyle: {
+            backgroundColor: Theme.Colors.colorWhite
         }
     }
 }
@@ -104,13 +103,13 @@ function TopTabAppNav() {
                     height: 100,
                     paddingTop: 50,
                     borderBottomWidth: 1,
-                    borderTopColor: Theme.Colors.backgroundColor,
+                    borderTopColor: Theme.Colors.primaryText,
                     elevation: 20
                 },
                 tabBarShowIcon: true,
                 tabBarShowLabel: false,
                 tabBarLabelStyle: {
-                    color: '#ffffff',
+                    color: Theme.Colors.primaryText,
                     paddingTop: 50,
                     alignSelf: 'baseline'
                 },
@@ -148,12 +147,12 @@ function AppNav() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 cardStyle: {
-                    backgroundColor: Theme.Colors.backgroundColor,
+                    backgroundColor: Theme.Colors.profileBackgroundColor,
                 },
                 tabBarLabelStyle: {
                     textAlign: 'center',
                     textAlignVertical: 'bottom',
-                    fontSize: 9,
+                    fontSize: 14,
                     alignSelf: 'baseline'
                 },
                 tabBarLabel: ({ focused }) => {
@@ -174,49 +173,61 @@ function AppNav() {
                     if (route.name == 'MoreScreen') {
                         itemLabel = 'More'
                     }
-                    return label = focused ? <Text style={{ fontSize: 9, textAlignVertical: 'bottom', color: Theme.CustomTheme['color-active-text'], textAlign: 'center' }}>{itemLabel}</Text> : <Text style={{ fontSize: 9, textAlignVertical: 'bottom', color: 'gray', textAlign: 'center' }}>{itemLabel}</Text>
+                    return label = focused ? <Text 
+                    style={{ fontSize: 9, 
+                        textAlignVertical: 'bottom', 
+                        color: Theme.CustomTheme['color-active-text'],
+                         textAlign: 'center' }}>{itemLabel}</Text> : <Text 
+                         style={{ fontSize: 10, textAlignVertical: 'bottom', 
+                            color: 'gray', 
+                            textAlign: 'center' }}>{itemLabel}</Text>
                 },
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName
                     if (route.name == 'AppHome') {
-                        iconName = focused ? Theme.Icons.home_selected : Theme.Icons.home
+                    
+                        iconName = focused ? Theme.Icons.home : Theme.Icons.home
                     }
                     if (route.name == 'Investment') {
-                        iconName = focused ? Theme.Icons.dashboard_selected : Theme.Icons.dashboard
+                        iconName = focused ? Theme.Icons.dashboard : Theme.Icons.dashboard
                     }
                     if (route.name == 'Mortgage') {
                         iconName = focused ? Theme.Icons.affordability_calc_selected : Theme.Icons.affordability_calc
                     }
                     if (route.name == 'PropertyScreen') {
-                        iconName = focused ? Theme.Icons.browse_property_selected : Theme.Icons.browse_property
+                        iconName = focused ? Theme.Icons.browse_property : Theme.Icons.browse_property
                     }
                     if (route.name == 'MoreScreen') {
-                        iconName = focused ? Theme.Icons.more_button_selected : Theme.Icons.more_button
+                        iconName = focused ? Theme.Icons.more_button : Theme.Icons.more_button
                     }
-                    return <Image style={{ width: 34, height: 34 }} alt={route.name} source={iconName} />
+                    return <Image style={{ 
+                        width: 34, 
+                        height: 34,
+                        tintColor: focused ? Theme.Colors.primaryText : Theme.Colors.tertiaryText,
+                    }} 
+                        alt={route.name} 
+                        source={iconName} />
                 },
                 tabBarStyle: {
-                    backgroundColor: Theme.Colors.backgroundColor,
+                    backgroundColor: Theme.Colors.profileBackgroundColor,
                     height: 90,
                     paddingBottom: 10,
-                    borderTopRightRadius: 30,
-                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 1,
+                    borderTopLeftRadius: 1,
                     paddingTop: 10,
-                    // width: deviceWidth,
-                    borderWidth: 1,
-                    borderTopColor: '#000000',
-                    elevation: 20,
-                    // position: 'absolute'
+                    borderWidth: 0,
+                    borderTopColor: Theme.Colors.profileBackgroundColor,
+                    elevation: 20,                
                 }
             })}
         >
             <Tab.Screen name="AppHome" options={{ headerShown: false, title: 'Home' }} component={AppHome} />
-            {/* <Tab.Screen name="AccountDetail" options={{ headerShown: false, title: 'Dashboard' }} component={TopTabAppNav} /> */}
             <Tab.Screen name="Investment" options={defaultPageHeader('My Investments')} component={InvestmentNav} />
-            <Tab.Screen name="Mortgage" options={defaultPageHeader('My Mortgage')} component={MortgageTab} />
-            {/* <Tab.Screen name="AffordabilityScreen" options={{ headerShown: false, title: "Affordability Calculator" }} component={AffordabilityCalculatorScreen} /> */}
             <Tab.Screen name="PropertyScreen" options={{ headerShown: false, title: 'Browse Properties' }} component={PropertyListingScreen} />
             <Tab.Screen name="MoreScreen" options={{ headerShown: false, title: 'More' }} component={MoreNav} />
+            {/* <Tab.Screen name="AccountDetail" options={{ headerShown: false, title: 'Dashboard' }} component={TopTabAppNav} /> */}
+            {/* <Tab.Screen name="Mortgage" options={defaultPageHeader('My Mortgage')} component={MortgageTab} /> */}
+            {/* <Tab.Screen name="AffordabilityScreen" options={{ headerShown: false, title: "Affordability Calculator" }} component={AffordabilityCalculatorScreen} /> */}
         </Tab.Navigator>
     );
 }

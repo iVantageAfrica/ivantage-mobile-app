@@ -12,19 +12,13 @@ const Card = (props) => {
         onPress={props.onPress}
         >
         <Box
-        {...props}
-        
-        shadow={3}
+            {...props}
+            shadow={3}
             h={145}
-            bg={{
-                linearGradient: {
-                    colors: [Theme.Colors.backgroundColor, card_color],
-                    start: [0, 0],
-                    end: [1, 0]
-                }
-            }}
-            style={styles.container} >
-            <VStack >
+            bg={card_color}
+            style={styles.container}
+        >
+            <VStack>
                 <Image style={{ position: 'absolute' }} alt={'test'} source={Theme.Images.cardbg} />
                 <HStack>
                     <VStack w={'4/5'}>
@@ -36,18 +30,18 @@ const Card = (props) => {
                                 {props.subtitleIcon ?? props.subtitleIcon}
                                 <Text style={{ color: '#ffffff', fontSize: 13 }} mt={2}>{props.subtitle ?? props.subtitle}</Text>
                             </HStack>
-
                         </Box>
                     </VStack>
                     <VStack style={{flexDirection: 'row'}}>
-                    {props.cardIcon ?? props.cardIcon}
+                        {props.cardIcon ?? props.cardIcon}
                     </VStack>
                 </HStack>
                 {props.actionBtn && <Box>
-                {props.actionBtn}    
+                    {props.actionBtn}    
                 </Box>}
             </VStack>
-        </Box></TouchableOpacity>
+        </Box>
+        </TouchableOpacity>
     )
 }
 

@@ -25,7 +25,8 @@ const MyTheme = {
 const config = {
   dependencies: {
     "linear-gradient": LinearGradient
-  }
+  },
+  strictMode: true
 };
 
 const cacheFonts = async(fonts) => {

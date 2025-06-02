@@ -12,9 +12,7 @@ import { useAuthentication } from "../../queries/useAuthentication";
 import { useFocusEffect } from '@react-navigation/native'
 import Currency from '../../components/currency'
 import TransactionHistory from '../partials/transaction_history'
-
 const { Transfer, RequestCard, AccountManager, Payment, PaymentHistory, BankStatement } = Theme.SVG
-
 import { useUser } from '../../context/usercontext'
 import AlertBox from '../../components/alertbox';
 import Loader from '../../components/loader'
@@ -150,7 +148,7 @@ const InvestmentScreen = ({ navigation, route }) => {
                 onButtonText={'Open New Investment'}
                 title={'No Investments'}
                 subtitle={'You have no investment account created '}
-                color={Theme.CustomTheme['card-green']}
+                color={Theme.Colors.cardColorSecondary}
             />
         </Box>
     }
@@ -187,8 +185,8 @@ const InvestmentScreen = ({ navigation, route }) => {
                         <Box w={'1/3'} h={100} style={{ backgroundColor: Theme.Colors.backgroundColorAlt, borderRadius: 10 }}>
                             <TouchableOpacity onPress={() => goTo('investment_new')} delayPressIn={0}>
                                 <Center>
-                                    <Image mb={3} mt={5} width={35} resizeMode="contain" source={Theme.Icons.new_investment} alt={'current'} />
-                                    <Text style={{ color: '#ffffff', textAlign: 'center' }}>New Investment</Text>
+                                    <Image mb={3} mt={10} width={35} resizeMode="contain" source={Theme.Icons.new_investment} alt={'current'} />
+                                    <Text mt={10} style={{ color: Theme.Colors.secondaryText, textAlign: 'center' }}>New Investment</Text>
                                 </Center>
                             </TouchableOpacity>
                         </Box>
@@ -196,7 +194,7 @@ const InvestmentScreen = ({ navigation, route }) => {
                             <TouchableOpacity disabled={!selectedInvestment} onPress={() => goTo('investment_add_to_deal')} delayPressIn={0}>
                                 <Center>
                                     <Image mb={3} mt={5} width={35} resizeMode="contain" source={Theme.Icons.carbon_add} alt={'current'} />
-                                    <Text style={{ color: '#ffffff', textAlign: 'center' }}>Add To Deal</Text>
+                                    <Text style={{ color: Theme.Colors.secondaryText, textAlign: 'center' }}>Add To Deal</Text>
                                 </Center>
                             </TouchableOpacity>
                         </Box>
@@ -204,7 +202,7 @@ const InvestmentScreen = ({ navigation, route }) => {
                             <TouchableOpacity disabled={!selectedInvestment} onPress={() => goTo('investment_liquidation_menu')} delayPressIn={0}>
                                 <Center>
                                     <Image mb={3} mt={5} width={35} resizeMode="contain" source={Theme.Icons.liquidate_deal} alt={'current'} />
-                                    <Text style={{ color: '#ffffff', textAlign: 'center' }}>Liquidate Deal</Text>
+                                    <Text style={{ color: Theme.Colors.secondaryText, textAlign: 'center' }}>Liquidate Deal</Text>
                                 </Center>
                             </TouchableOpacity>
                         </Box>

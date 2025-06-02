@@ -40,6 +40,7 @@ const SignUpScreen = ({ navigation }) => {
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const { validate, isFieldInError, getErrorsInField } = useValidation({
     state: {
@@ -139,7 +140,7 @@ const SignUpScreen = ({ navigation }) => {
               </Heading>
 
               <VStack mt="3">
-                <FormControl isInvalid>
+                <FormControl isInvalid={submitted && isFieldInError("firstname")}>
                   <FormControl.Label
                     _text={{
                       color: Theme.Colors.colorBlack,
@@ -157,7 +158,7 @@ const SignUpScreen = ({ navigation }) => {
                     variant={"rounded"}
                     value={firstname}
                   />
-                  {isFieldInError("firstname") && (
+                  {submitted && isFieldInError("firstname") && (
                     <FormControl.ErrorMessage
                       leftIcon={<WarningOutlineIcon size="xs" />}
                       _text={{ color: Theme.Colors.colorBlack }}
@@ -167,7 +168,7 @@ const SignUpScreen = ({ navigation }) => {
                   )}
                 </FormControl>
 
-                <FormControl isInvalid>
+                <FormControl isInvalid={submitted && isFieldInError("middlename")}>
                   <FormControl.Label
                     _text={{
                       color: Theme.Colors.secondaryText,
@@ -185,7 +186,7 @@ const SignUpScreen = ({ navigation }) => {
                     variant={"rounded"}
                     value={middlename}
                   />
-                  {isFieldInError("middlename") && (
+                  {submitted && isFieldInError("middlename") && (
                     <FormControl.ErrorMessage
                       leftIcon={<WarningOutlineIcon size="xs" />}
                       _text={{ color: Theme.Colors.secondaryText }}
@@ -195,7 +196,7 @@ const SignUpScreen = ({ navigation }) => {
                   )}
                 </FormControl>
 
-                <FormControl isInvalid>
+                <FormControl isInvalid={submitted && isFieldInError("lastname")}>
                   <FormControl.Label
                     _text={{
                       color: Theme.Colors.secondaryText,
@@ -213,7 +214,7 @@ const SignUpScreen = ({ navigation }) => {
                     variant={"rounded"}
                     value={lastname}
                   />
-                  {isFieldInError("lastname") && (
+                  {submitted && isFieldInError("lastname") && (
                     <FormControl.ErrorMessage
                       leftIcon={<WarningOutlineIcon size="xs" />}
                       _text={{ color: Theme.Colors.secondaryText }}
@@ -223,7 +224,7 @@ const SignUpScreen = ({ navigation }) => {
                   )}
                 </FormControl>
 
-                <FormControl isInvalid>
+                <FormControl isInvalid={submitted && isFieldInError("email")}>
                   <FormControl.Label
                     type={"Email"}
                     _text={{
@@ -243,7 +244,7 @@ const SignUpScreen = ({ navigation }) => {
                     value={email}
                     variant={"rounded"}
                   />
-                  {isFieldInError("email") && (
+                  {submitted && isFieldInError("email") && (
                     <FormControl.ErrorMessage
                       leftIcon={<WarningOutlineIcon size="xs" />}
                       _text={{ color: Theme.Colors.secondaryText }}
@@ -253,7 +254,7 @@ const SignUpScreen = ({ navigation }) => {
                   )}
                 </FormControl>
 
-                <FormControl isInvalid>
+                <FormControl isInvalid={submitted && isFieldInError("phonenumber")}>
                   <FormControl.Label
                     _text={{
                       color: Theme.Colors.secondaryText,
@@ -273,7 +274,7 @@ const SignUpScreen = ({ navigation }) => {
                     style={Shared.TextInput.default}
                     variant={"rounded"}
                   />
-                  {isFieldInError("phonenumber") && (
+                  {submitted && isFieldInError("phonenumber") && (
                     <FormControl.ErrorMessage
                       leftIcon={<WarningOutlineIcon size="xs" />}
                       _text={{ color: Theme.Colors.secondaryText }}
@@ -300,7 +301,7 @@ const SignUpScreen = ({ navigation }) => {
                   >
                     Security
                   </Text>
-                  <FormControl isInvalid>
+                  <FormControl isInvalid={submitted && isFieldInError("password")}>
                     <FormControl.Label
                       _text={{
                         color: Theme.Colors.secondaryText,
@@ -332,7 +333,7 @@ const SignUpScreen = ({ navigation }) => {
                         </Button>
                       }
                     />
-                    {isFieldInError("password") && (
+                    {submitted && isFieldInError("password") && (
                       <FormControl.ErrorMessage
                         leftIcon={<WarningOutlineIcon size="xs" />}
                         _text={{ color: Theme.Colors.secondaryText }}
@@ -362,7 +363,7 @@ const SignUpScreen = ({ navigation }) => {
                       value={pin}
                       variant={"rounded"}
                     />
-                    {isFieldInError("pin") && (
+                    {submitted && isFieldInError("pin") && (
                       <FormControl.ErrorMessage
                         leftIcon={<WarningOutlineIcon size="xs" />}
                         _text={{ color: Theme.Colors.secondaryText }}
@@ -376,7 +377,7 @@ const SignUpScreen = ({ navigation }) => {
                   </FormControl>
                 </Box>
                 <Box mt={3}>
-                  <FormControl isInvalid>
+                  <FormControl isInvalid={submitted && isFieldInError("referralCode")}>
                     <FormControl.Label
                       _text={{
                         color: Theme.Colors.secondaryText,
@@ -426,7 +427,12 @@ const SignUpScreen = ({ navigation }) => {
                 </VStack>
                 <Button
                   isDisabled={!isValid || !agreetoterms}
-                  onPress={() => register()}
+                  onPress={() => {
+                    setSubmitted(true);
+                    if (isValid && agreetoterms) {
+                      register();
+                    }
+                  }}
                   mt="2"
                   isLoading={isLoading}
                   variant={"solid"}

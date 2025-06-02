@@ -44,8 +44,8 @@ const TextInput = {
     backgroundColor: "#ffffff",
     color: "#000000",
     fontSize: 14,
-    //borderColor: "#000000",
-    borderWidth: 1,
+    borderColor: "#0D0D0D",
+    borderWidth: 0.5,
   },
   roundedInput: {
     borderRadius: 20,
@@ -89,6 +89,15 @@ const Select = {
     color: "#000000",
     fontSize: 14,
     borderColor: "#14BAB0",
+    borderWidth: 1,
+  },
+  
+  default2: {
+    borderRadius: 20,
+    backgroundColor: "#ffffff",
+    color: "#000000",
+    fontSize: 14,
+    borderColor: "#000000",
     borderWidth: 1,
   },
 };

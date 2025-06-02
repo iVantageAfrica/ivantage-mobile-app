@@ -10,18 +10,12 @@ const CardPanel = (props) => {
     return (
         <Box
             {...props}
-
-            shadow={3}
+            shadow={2}
             h={props.h ?? 165}
-            bg={{
-                linearGradient: {
-                    colors: [Theme.Colors.backgroundColor, card_color],
-                    start: [0, 0],
-                    end: [1, 0]
-                }
-            }}
-            style={styles.container} >
-            <VStack >
+            bg={card_color}
+            style={styles.container}
+        >
+            <VStack>
                 <Image mb={0} style={{ position: 'absolute', bottom: 10 }} alt={'image'} source={Theme.Images.cardbg} />
                 {props.children && <VStack>
                     {props.children}
@@ -37,10 +31,10 @@ const CardPanel = (props) => {
 const styles = StyleSheet.create({
     container: {
         borderWidth: 1,
-        borderColor: Theme.Colors.backgroundColor,
+        borderColor: Theme.Colors.cardColor,
         marginBottom: 7,
         marginTop: 7,
-        borderRadius: 10
+        borderRadius: 12
     }
 });
 

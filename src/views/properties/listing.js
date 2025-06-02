@@ -148,7 +148,8 @@ const PropertyListingScreen = ({ navigation, route, isEmbedded = false, property
         <VStack safeArea style={styles.container}>
             <Box px={4} mb={5}>
                 <HStack space={1}>
-                    <Input onChangeText={(text) => filterPropertyView(text)} variant={'rounded'} placeholder={'Find your dream home'} w={!isEmbedded ? '5/6' : 'full'} style={{ paddingLeft: 20, paddingTop: 5, paddingBottom: 5, paddingRight: 5, backgroundColor: '#415367', color: '#ffffff', fontSize: 12 }} />
+                    <Input onChangeText={(text) => filterPropertyView(text)} variant={'rounded'} placeholder={'Find your dream home'} w={!isEmbedded ? '5/6' : 'full'}
+                     style={{ paddingLeft: 20, paddingTop: 5, paddingBottom: 5, paddingRight: 5, backgroundColor: Theme.Colors.colorWhite, color: Theme.Colors.primaryText, fontSize: 12 }} />
                     {!isEmbedded && <Button ml={2} onPress={() => {
                         navigation.navigate('FilterViewScreen', { callback: handleFilterAction })
                     }} style={Shared.Button.primary} variant={'outline'} ><Icon color="white" as={<FontAwesome name={'search'} />} size="sm" /></Button>}

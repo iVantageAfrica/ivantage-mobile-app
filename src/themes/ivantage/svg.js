@@ -7,15 +7,18 @@ import Bills from '../../images/icons/bills.svg'
 import RequestCard from '../../images/icons/requestcard.svg'
 import IvantageLogo from '../../images/icons/ivantage-logo.svg'
 import Bank from  '../../images/icons/bank.svg'
-import Fingerprint from  '../../images/icons/fingerprint.svg'
-import FingerprintWhite from  '../../images/icons/fingerprint-white.svg'
+import ToOtherBanksIcon  from  '../../images/icons/ic_to_other_banks.svg'
+import ToIvantageIcon from '../../images/icons/ic_to_ivantage_acct.svg'
+import ToOwnAccountIcon from '../../images/icons/ic_to_own_account.svg'
+import Fingerprint from '../../images/icons/fingerprint.svg'
+import FingerprintWhite from '../../images/icons/fingerprint-white.svg'
 import KeyWhite from  '../../images/icons/key-square.svg'
 import HomevestLandingImage from '../../images/ivantage/homevest_landing.svg'
 import HomevestHomeIcon1 from '../../images/icons/homevest_icon_01.svg'
 import HomevestDash from '../../images/icons/homevest_dash.svg'
 
 export default {
-    Transfer, Payment, PaymentHistory, AccountManager, BankStatement, 
+    Transfer, Payment, PaymentHistory, AccountManager, BankStatement, ToOtherBanksIcon, ToIvantageIcon, ToOwnAccountIcon,
     Bills, RequestCard, IvantageLogo, Bank, Fingerprint, FingerprintWhite, HomevestLandingImage, HomevestHomeIcon1,
     KeyWhite, HomevestDash
 }

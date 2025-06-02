@@ -4,25 +4,9 @@ import Theme from "../../themes";
 import Shared from "../../themes/shared";
 import { useAuthentication } from "../../queries/useAuthentication";
 import {
-  Box,
-  VStack,
-  HStack,
-  Center,
-  FormControl,
-  Link,
-  useDisclose,
-  ScrollView,
-  Actionsheet,
-  Button,
-  Select,
-  Image,
-  Text,
-  FlatList,
-  Icon,
-  IconButton,
-  Flex,
-  Spacer,
-  Skeleton,
+  Box, VStack, HStack, Center, FormControl, Link,
+  useDisclose, ScrollView, Actionsheet, Button, Select, Image,
+  Text, FlatList, Icon, IconButton, Flex, Spacer, Skeleton, ChevronDownIcon,
 } from "native-base";
 import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -100,14 +84,14 @@ const HomeScreen = ({ navigation }) => {
     useCallback(() => {
       loadAccountInfo(true);
       getInvestments();
-      checkBVNVerificationRequired();
+      //checkBVNVerificationRequired();
     }, [])
   );
 
   useEffect(() => {
     loadAccountInfo();
     getInvestments();
-    checkBVNVerificationRequired();
+    //checkBVNVerificationRequired();
   }, []);
 
   const loadAccountInfo = async (in_background) => {
@@ -279,14 +263,14 @@ const HomeScreen = ({ navigation }) => {
     <>
       <ScrollView style={{ ...styles.container }}>
         <Box safeArea mt={3} mb={90}>
-          <Box px="2" w="full">
+          <Box px="3.5" w="full">
             <Profile navigation={navigation} userData={authData} />
-            <VStack>
+            <VStack >
               {hasAccount && (
                 <CardPanel
                   h={185}
                   key={"account-card"}
-                  color={Theme.Colors.primaryText}
+                  color={Theme.Colors.cardColor}
                 >
                   <Box>
                     <Flex direction="row" justify="space-between">
@@ -294,23 +278,39 @@ const HomeScreen = ({ navigation }) => {
                         Object.values(accountTypes).length > 0 && (
                           <Box flex={1} mt={1} px={3}>
                             <Text
-                              color={"orange.100"}
-                              style={{ fontSize: 14 }}
+                              color={Theme.Colors.colorWhite}
+                              style={{ fontSize: 16 }}
                               mb={1}
+                              mt={1}
                             >
                               Accounts
                             </Text>
                             <Select
-                              color={Theme.Colors.primaryText}
+                              color={Theme.Colors.colorWhite}
                               fontWeight={"bold"}
                               borderWidth={1}
-                              borderColor={"orange.100"}
+                              rounded={10}
+                              borderColor={Theme.Colors.colorWhite}
+                              placeholder="Choose Account"
+                              placeholderTextColor={Theme.Colors.colorWhite}
+                              dropdownIcon={
+                                <Icon
+                                  as={FontAwesome}
+                                  name="chevron-down"
+                                  color={Theme.Colors.colorWhite}
+                                  style={{
+                                    alignSelf: "center",
+                                    width: 28,
+                                    height: 28,
+                                    marginTop: 10,
+                                  }}
+                                />
+                              }
                               onValueChange={(item) => {
                                 getAccountBalance(item, accountTypes);
                               }}
                               defaultValue={selectedAccount}
                               accessibilityLabel="Choose Account"
-                              placeholder="Choose Account"
                             >
                               {accountTypes &&
                                 Object.values(accountTypes).map(
@@ -329,25 +329,25 @@ const HomeScreen = ({ navigation }) => {
                           </Box>
                         )}
                       {selectedAccount && (
-                        <Box mt={2}>
+                        <Box mt={3}>
                           <TouchableOpacity
                             onPress={() => copyToClipboard(accountBalanceInfo)}
                           >
                             <Box
                               m={5}
                               p={2}
-                              bg={"orange.800"}
+                              bg={Theme.Colors.cardColorSecondary2}
                               style={{ borderRadius: 10 }}
                             >
                               <HStack space={1}>
-                                <Text color={Theme.Colors.primaryText}>
+                                <Text color={Theme.Colors.colorWhite}>
                                   {selectedAccount}
                                 </Text>
                                 <IconButton
                                   icon={
                                     <Icon
                                       size={14}
-                                      color={"orange.100"}
+                                      color={Theme.Colors.colorWhite}
                                       as={FontAwesome}
                                       name={"copy"}
                                     />
@@ -370,7 +370,7 @@ const HomeScreen = ({ navigation }) => {
                             {displayAccountBalance && (
                               <Currency
                                 fontSize={25}
-                                color={Theme.Colors.primaryText}
+                                color={Theme.Colors.colorWhite}
                                 fontWeight={"extrabold"}
                                 value={
                                   accountBalanceInfo?.availableBalance ?? 0.0
@@ -380,7 +380,7 @@ const HomeScreen = ({ navigation }) => {
                             {!displayAccountBalance && (
                               <Text
                                 fontSize={25}
-                                color={Theme.Colors.primaryText}
+                                color={Theme.Colors.colorWhite}
                                 fontWeight={"extrabold"}
                               >
                                 * * * * * * * * * * * *
@@ -395,7 +395,7 @@ const HomeScreen = ({ navigation }) => {
                               icon={
                                 <Icon
                                   size={23}
-                                  color={"orange.100"}
+                                  color={Theme.Colors.colorWhite}
                                   as={FontAwesome}
                                   name={
                                     !displayAccountBalance ? "eye-slash" : "eye"
@@ -450,126 +450,138 @@ const HomeScreen = ({ navigation }) => {
                 </CardPanel>
               )}
             </VStack>
+
             <VStack>
-              <Flex p={1} direction="row" justifyContent="space-between">
-                <TouchableOpacity
-                  onPress={() => goTo("savings_tranfers_menu", {})}
-                  delayPressIn={0}
-                >
-                  <Box
-                    mb={2}
-                    alignItems={"center"}
-                    p={5}
-                    style={{
-                      backgroundColor: Theme.Colors.backgroundColor,
-                      borderColor: Theme.Colors.backgroundColorAlt,
-                      borderRadius: 10,
-                      borderWidth: 0,
-                    }}
+              <Box
+                mb={2}
+                p={2}
+                style={{
+                  backgroundColor: Theme.Colors.cardColorSecondary,
+                  borderRadius: 15,
+                }}
+              >
+                <Flex p={1} direction="row" justifyContent="space-between">
+                  <TouchableOpacity
+                    onPress={() => goTo("savings_tranfers_menu", {})}
+                    delayPressIn={0}
                   >
-                    <Transfer marginTop={5} height={30} />
-                  </Box>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: Theme.Colors.primaryText,
-                      textAlign: "center",
-                    }}
+                    <Box
+                      mb={2}
+                      alignItems={"center"}
+                      p={2}
+                      style={{
+                        backgroundColor: Theme.Colors.cardColorSecondary2,
+                        borderColor: Theme.Colors.cardColorSecondary2,
+                        borderRadius: 10,
+                        borderWidth: 0,
+                      }}
+                    >
+                      <Transfer marginTop={2} height={30} />
+                    </Box>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: Theme.Colors.colorWhite,
+                        textAlign: "center",
+                      }}
+                    >
+                      Transfer
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => goTo("TransactionHistoryScreen", {})}
+                    delayPressIn={0}
                   >
-                    Transfer
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => goTo("TransactionHistoryScreen", {})}
-                  delayPressIn={0}
-                >
-                  <Box
-                    mb={2}
-                    alignItems={"center"}
-                    p={5}
-                    style={{
-                      backgroundColor: Theme.Colors.backgroundColor,
-                      borderColor: Theme.Colors.backgroundColorAlt,
-                      borderRadius: 10,
-                      borderWidth: 0,
-                    }}
+                    <Box
+                      mb={2}
+                      alignItems={"center"}
+                      p={2}
+                      style={{
+                        backgroundColor: Theme.Colors.cardColorSecondary2,
+                        borderColor: Theme.Colors.cardColorSecondary2,
+                        borderRadius: 10,
+                        borderWidth: 0,
+                      }}
+                    >
+                      <PaymentHistory marginTop={2} height={30} />
+                    </Box>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: Theme.Colors.colorWhite,
+                        textAlign: "center",
+                      }}
+                    >
+                      Trans. History
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => goTo("bills.home", {})}
+                    delayPressIn={0}
                   >
-                    <PaymentHistory marginTop={5} height={30} />
-                  </Box>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: Theme.Colors.primaryText,
-                      textAlign: "center",
-                    }}
+                    <Box
+                      mb={2}
+                      alignItems={"center"}
+                      p={2}
+                      style={{
+                        backgroundColor: Theme.Colors.cardColorSecondary2,
+                        borderColor: Theme.Colors.cardColorSecondary2,
+                        borderRadius: 10,
+                        borderWidth: 0,
+                      }}
+                    >
+                      <Bills marginTop={2} height={30} />
+                    </Box>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: Theme.Colors.colorWhite,
+                        textAlign: "center",
+                      }}
+                    >
+                      Bills Payment
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => goTo("CardRequestScreen", {})}
+                    delayPressIn={0}
                   >
-                    Trans. History
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => goTo("bills.home", {})}
-                  delayPressIn={0}
-                >
-                  <Box
-                    mb={2}
-                    alignItems={"center"}
-                    p={5}
-                    style={{
-                      backgroundColor: Theme.Colors.backgroundColor,
-                      borderColor: Theme.Colors.backgroundColorAlt,
-                      borderRadius: 10,
-                      borderWidth: 0,
-                    }}
-                  >
-                    <Bills marginTop={5} height={30} />
-                  </Box>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: Theme.Colors.primaryText,
-                      textAlign: "center",
-                    }}
-                  >
-                    Bills Payment
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => goTo("CardRequestScreen", {})}
-                  delayPressIn={0}
-                >
-                  <Box
-                    mb={2}
-                    alignItems={"center"}
-                    p={5}
-                    style={{
-                      backgroundColor: Theme.Colors.backgroundColor,
-                      borderColor: Theme.Colors.backgroundColorAlt,
-                      borderRadius: 10,
-                      borderWidth: 0,
-                    }}
-                  >
-                    <RequestCard marginTop={5} height={30} />
-                  </Box>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: Theme.Colors.primaryText,
-                      textAlign: "center",
-                    }}
-                  >
-                    Request Card
-                  </Text>
-                </TouchableOpacity>
-              </Flex>
+                    <Box
+                      mb={2}
+                      alignItems={"center"}
+                      p={2}
+                      style={{
+                        backgroundColor: Theme.Colors.cardColorSecondary2,
+                        borderColor: Theme.Colors.cardColorSecondary2,
+                        borderRadius: 10,
+                        borderWidth: 0,
+                      }}
+                    >
+                      <RequestCard marginTop={2} height={30} />
+                    </Box>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: Theme.Colors.colorWhite,
+                        textAlign: "center",
+                      }}
+                    >
+                      Request Card
+                    </Text>
+                  </TouchableOpacity>
+                </Flex>
+              </Box>
             </VStack>
           </Box>
-          <Box mt={3} px={3}>
+
+
+          <Box mt={3} px={3.5}>
             <Text style={{ color: "gray", fontSize: 18, fontWeight: "bold" }}>
               Fixed Deposit Investments
             </Text>
           </Box>
           {(!investments || investments.length == 0) && (
-            <Box mt={3} px={2} w={Shared.DeviceDimensions.WIDTH}>
+            <Box mt={3} px={3.5} w={Shared.DeviceDimensions.WIDTH}>
               <Card
                 w={Shared.DeviceDimensions.WIDTH - 20}
                 maxW={Shared.DeviceDimensions.WIDTH - 20}
@@ -579,7 +591,6 @@ const HomeScreen = ({ navigation }) => {
                     screen: "investment",
                   });
                 }}
-                // w={'full'}
                 subtitleIcon={
                   <Image
                     w={5}
@@ -627,53 +638,55 @@ const HomeScreen = ({ navigation }) => {
               />
             </Box>
           )}
-          {investments && investments.length > 0 && (
-            <FlatList
-              maxW={Shared.DeviceDimensions.WIDTH}
-              w={Shared.DeviceDimensions.WIDTH}
-              horizontal={true}
-              data={investments}
-              renderItem={({ item, index }) => {
-                return (
-                  <Card
-                    onPress={(e) => {
-                      navigation.navigate("Investment", {
-                        params: { item, index },
-                        screen: "investment",
-                      });
-                    }}
-                    w={Shared.DeviceDimensions.WIDTH - 20}
-                    ml={2}
-                    mr={2}
-                    key={item.accountNo}
-                    subtitleIcon={
-                      <Image
-                        w={5}
-                        h={5}
-                        mt={2}
-                        source={Theme.Images.card_acc_no_icon}
-                        alt={"ivantage"}
-                      />
-                    }
-                    cardIcon={
-                      <Image
-                        width={35}
-                        mt={3}
-                        resizeMode="contain"
-                        source={Theme.Icons.diamond}
-                        alt={"ivantage"}
-                      />
-                    }
-                    color={Theme.CustomTheme["card-green"]}
-                    title={`Investment Account`}
-                    subtitle={`${item.accountNo}`}
-                  />
-                );
-              }}
-            />
-          )}
         </Box>
       </ScrollView>
+      {investments && investments.length > 0 && (
+        <Box position="absolute" bottom={90} left={0} right={0}>
+          <FlatList
+            maxW={Shared.DeviceDimensions.WIDTH}
+            w={Shared.DeviceDimensions.WIDTH}
+            horizontal={true}
+            data={investments}
+            renderItem={({ item, index }) => {
+              return (
+                <Card
+                  onPress={(e) => {
+                    navigation.navigate("Investment", {
+                      params: { item, index },
+                      screen: "investment",
+                    });
+                  }}
+                  w={Shared.DeviceDimensions.WIDTH - 20}
+                  ml={2}
+                  mr={2}
+                  key={item.accountNo}
+                  subtitleIcon={
+                    <Image
+                      w={5}
+                      h={5}
+                      mt={2}
+                      source={Theme.Images.card_acc_no_icon}
+                      alt={"ivantage"}
+                    />
+                  }
+                  cardIcon={
+                    <Image
+                      width={35}
+                      mt={3}
+                      resizeMode="contain"
+                      source={Theme.Icons.diamond}
+                      alt={"ivantage"}
+                    />
+                  }
+                  color={Theme.CustomTheme["card-green"]}
+                  title={`Investment Account`}
+                  subtitle={`${item.accountNo}`}
+                />
+              );
+            }}
+          />
+        </Box>
+      )}
       <Actionsheet
         isOpen={isOpen}
         onClose={onClose}

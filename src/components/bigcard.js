@@ -9,24 +9,18 @@ const BigCard = (props) => {
     const card_color = props.color ? props.color : 'orange.800'
     return (
         <Box
-        {...props}
-        p={3}
-        shadow={3}
-
+            {...props}
+            p={3}
+            shadow={3}
             h={250}
-            bg={{
-                linearGradient: {
-                    colors: [Theme.Colors.backgroundColor, card_color],
-                    start: [0, 0],
-                    end: [1, 0]
-                }
-            }}
-            style={styles.container} >
-            <VStack >
+            bg={card_color}
+            style={styles.container}
+        >
+            <VStack>
                 <Image style={{ position: 'absolute', height: 235 }} alt={'test'} source={Theme.Images.cardbg} />
                 <HStack>
                     <VStack w={'4/5'}>
-                        <Box _text={{ color: '#ffffff', fontSize: 16 }} >
+                        <Box _text={{ color: '#ffffff', fontSize: 16 }}>
                             {props.title ?? props.title}
                         </Box>
                         <Box px="2">
@@ -34,14 +28,12 @@ const BigCard = (props) => {
                                 {props.subtitleIcon ?? props.subtitleIcon}
                                 <Text style={{ color: '#ffffff', fontSize: 13 }} mt={2}>{props.subtitle ?? props.subtitle}</Text>
                             </HStack>
-
                         </Box>
                     </VStack>
                     <VStack style={{flexDirection: 'row'}}>
-                    {props.cardIcon ?? props.cardIcon}
+                        {props.cardIcon ?? props.cardIcon}
                     </VStack>
                 </HStack>
-
             </VStack>
             <VStack px={5}>
                 <Box mb={2} _text={{ color: '#ffffff', fontSize: 12, textAlign: 'center' }} px="2">
@@ -66,7 +58,7 @@ const BigCard = (props) => {
                         </Box>
                     </HStack>
                 </Box>}
-                <Box  mt={3}>
+                <Box mt={3}>
                     <HStack space={3}>
                         {props.label5_title && <Box w={'1/3'} style={{backgroundColor:Theme.Colors.backgroundColor}} px="2">
                             <VStack>

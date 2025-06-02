@@ -233,11 +233,6 @@ const BeneficiaryScreen = ({ navigation, route }) => {
         <>
         <ScrollView style={{...styles.container}}>
             <Box>
-                <VStack ml={5} mb={5}>
-                    <Heading mt={5} size="2xl" fontWeight="800" color="#ffffff" >
-                        Beneficiaries
-                    </Heading>
-                </VStack>
                 <VStack h={'100%'} mb={200} >
                     <Box mb={5} px={3}>
                     <Input style={Shared.TextInput.default} placeholder={'Filter Beneficiary List'} onChangeText={(t) => {

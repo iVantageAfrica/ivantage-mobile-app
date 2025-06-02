@@ -314,17 +314,12 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
     <ScrollView style={styles.container}>
       <VStack>
         <Box px={7}>
-          <Box mb={5}>
-            <Heading mt={5} size="2xl" fontWeight="800" color="#ffffff">
-              <Text>{displayName}</Text> Transfer
-            </Heading>
-          </Box>
-          <VStack>
+          <VStack mt={5}>
             <FormControl isRequired>
               <FormControl.Label
                 type={"Email"}
                 _text={{
-                  color: "#ffffff",
+                  color: Theme.Colors.secondaryText,
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}
@@ -364,15 +359,15 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
                   Account not selected
                 </FormControl.ErrorMessage>
               )}
-              <Text style={{ fontSize: 11, color: "#ffffff" }}>
+              <Text style={{ fontSize: 11, color: Theme.Colors.secondaryText }}>
                 Accounts with PENDING status cannot be selected.
               </Text>
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt={2} isRequired>
               <FormControl.Label
                 type={"Email"}
                 _text={{
-                  color: "#ffffff",
+                  color: Theme.Colors.secondaryText,
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}
@@ -401,13 +396,13 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
               </Select>
             </FormControl>
             {isFromBeneficiary && (
-              <HStack>
+              <HStack mt={2}>
                 <Box w={"3/4"}>
                   <FormControl isRequired>
                     <FormControl.Label
                       type={"Email"}
                       _text={{
-                        color: "#ffffff",
+                        color: Theme.Colors.secondaryText,
                         fontWeight: "medium",
                         fontSize: "sm",
                       }}
@@ -422,7 +417,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
                           <FormControl>
                             <FormControl.Label
                               _text={{
-                                color: "#000000",
+                                color: Theme.Colors.secondaryText,
                                 fontWeight: "medium",
                                 fontSize: "sm",
                               }}
@@ -484,7 +479,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
                         Account not selected.
                       </FormControl.ErrorMessage>
                     )}
-                    <Text style={{ fontSize: 11, color: "#ffffff" }}>
+                    <Text style={{ fontSize: 11, color: Theme.Colors.secondaryText }}>
                       Select from a list of beneficiaries you created.
                     </Text>
                   </FormControl>
@@ -504,7 +499,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
               <FormControl mb={2} isRequired>
                 <FormControl.Label
                   _text={{
-                    color: "#ffffff",
+                    color: Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -550,7 +545,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
                   <FormControl mb={2} isRequired>
                     <FormControl.Label
                       _text={{
-                        color: "#ffffff",
+                        color: Theme.Colors.secondaryText,
                         fontWeight: "medium",
                         fontSize: "sm",
                       }}
@@ -597,7 +592,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
                 <FormControl.Label
                   type={"Email"}
                   _text={{
-                    color: "#ffffff",
+                    color: Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -619,7 +614,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
               <FormControl.Label
                 type={"Email"}
                 _text={{
-                  color: "#ffffff",
+                  color: Theme.Colors.secondaryText,
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}
@@ -652,7 +647,7 @@ const TransferToOtherAcctScreen = ({ navigation, route }) => {
               <FormControl.Label
                 type={"Email"}
                 _text={{
-                  color: "#ffffff",
+                  color: Theme.Colors.secondaryText,
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}

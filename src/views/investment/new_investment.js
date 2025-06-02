@@ -66,21 +66,15 @@ const NewInvestmentScreen = ({ navigation, route }) => {
   const [isLoadingInterest, setIsLoadingInterest] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const { validate, isFieldInError, getErrorsInField } = useValidation({
-    state: { account, amount },
+    state: { account, amount, tenor, selectedYear, selectedMonth, selectedDay },
   });
 
   useEffect(() => {
-    const valid = validate({
-      account: { numbers: true, required: true },
-      tenor: { required: true },
-      amount: { numbers: true, required: true },
-    });
-    setIsValid(valid);
     getBankAccounts();
     getTenorListRef();
     generateYears();
     generateMonths();
-  }, [account, tenor, amount]);
+  }, []);
 
   const getBankAccounts = () => {
     getAccounts({}).then((res) => {
@@ -124,6 +118,23 @@ const NewInvestmentScreen = ({ navigation, route }) => {
   };
 
   const makeInvestmentRequest = async () => {
+    const valid = validate({
+      account: { numbers: true, required: true },
+      tenor: { required: true },
+      amount: { numbers: true, required: true },
+      selectedYear: { required: true },
+      selectedMonth: { required: true },
+      selectedDay: { required: true },
+    });
+
+    if (!valid) {
+      AlertBox.showError(
+        "Please fill in all required fields correctly.",
+        "Validation Error"
+      );
+      return;
+    }
+
     if (amount <= 0) {
       return;
     }
@@ -240,17 +251,17 @@ const NewInvestmentScreen = ({ navigation, route }) => {
       <ScrollView>
         <Box px={5}>
           <Box mb={1}>
-            <Heading mt={5} size="xl" fontWeight="800" color="#ffffff">
+            <Heading mt={5} size="xl" fontWeight="800" color={Theme.Colors.secondaryText}>
               New Investment
             </Heading>
           </Box>
-          <VStack space={1} mb={50}>
+          <VStack space={1} mb={50} >
             <VStack>
-              <FormControl isInvalid isRequired>
+              <FormControl mt={2} >
                 <FormControl.Label
                   type={"Email"}
                   _text={{
-                    color: "#ffffff",
+                    color: Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -287,11 +298,11 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                   </FormControl.ErrorMessage>
                 )}
               </FormControl>
-              <FormControl isInvalid isRequired>
+              <FormControl>
                 <FormControl.Label
                   type={"Email"}
                   _text={{
-                    color: "#ffffff",
+                    color: Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -320,11 +331,11 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                   </FormControl.ErrorMessage>
                 )}
               </FormControl>
-              <FormControl isInvalid isRequired>
+              <FormControl>
                 <FormControl.Label
                   type={"Email"}
                   _text={{
-                    color: "#ffffff",
+                    color: Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -341,7 +352,7 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                   placeholder={"Select Tenor"}
                   bgColor={"#ffffff"}
                   borderRadius={20}
-                  style={{ ...Shared.Select.default }}
+                  style={{ ...Shared.Select.default2 }}
                   variant={"rounded"}
                 >
                   {tenors &&
@@ -367,10 +378,10 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                     style={{
                       padding: 10,
                       borderWidth: 1,
-                      borderColor: Theme.Colors.backgroundColorAlt,
+                      borderColor: Theme.Colors.primaryText,
                     }}
                     _text={{
-                      color: "#ffffff",
+                      color:  Theme.Colors.secondaryText,
                       fontWeight: "medium",
                       fontSize: "sm",
                     }}
@@ -392,7 +403,7 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                   >
                     <Text
                       style={{
-                        color: "#ffffff",
+                        color:  Theme.Colors.secondaryText,
                         fontWeight: "bold",
                         fontSize: 15,
                       }}
@@ -402,10 +413,10 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                   </Box>
                 )}
               </FormControl>
-              <FormControl isRequired>
+              <FormControl>
                 <FormControl.Label
                   _text={{
-                    color: "#ffffff",
+                    color:  Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -422,7 +433,7 @@ const NewInvestmentScreen = ({ navigation, route }) => {
                     bgColor={"#ffffff"}
                     borderRadius={20}
                     w={"90"}
-                    style={{ ...Shared.Select.default }}
+                    style={{ ...Shared.Select.default2 }}
                     variant={"rounded"}
                   >
                     {years &&
@@ -476,7 +487,7 @@ const NewInvestmentScreen = ({ navigation, route }) => {
               <FormControl mt={3}>
                 <FormControl.Label
                   _text={{
-                    color: "#ffffff",
+                    color:  Theme.Colors.secondaryText,
                     fontWeight: "medium",
                     fontSize: "sm",
                   }}
@@ -506,7 +517,6 @@ const NewInvestmentScreen = ({ navigation, route }) => {
         space={5}
       >
         <Button
-          isDisabled={!isValid}
           variant={"solid"}
           w={"full"}
           size={"lg"}

@@ -50,26 +50,6 @@ const LoginScreen = ({ navigation }) => {
     state: { username, password },
   });
 
-  // useFocusEffect(useCallback(() => {
-  //     (async () => {
-  //         const email = await getStoredEmail()
-  //         const passwordData = await getStoredPassword()
-  //         if (email) {
-  //             setUsername(email)
-  //         }
-  //         if (passwordData) { setPassword(passwordData) }
-  //         if (username && password) {
-  //             const isEnable = await MSStorage.getItem('enable_biometric')
-  //             setIsBiometricEnable(isEnable)
-  //             if (isEnable) {
-  //                 setIsEnabledBioAuth(true)
-  //                 await configureBiometricAuth()
-  //             }
-  //         }
-
-  //     })()
-  // }, [isBiometricEnabled, isEnabledBioAuth]))
-
   useEffect(() => {
     (async () => {
       const email = await getStoredEmail();
@@ -225,7 +205,7 @@ const LoginScreen = ({ navigation }) => {
 
   const LoadingSpinner = () => (
     <Animated.Image
-      source={Theme.Images.icon}
+      source={require('../../images/icons/dashboard_icon.png')}
       style={{
         width: 30,
         height: 30,
@@ -236,14 +216,58 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <Center h={"full"} mt={20} w="100%">
-        <Box safeArea p="2" py="8" w="full" px={5}>
-          <Heading size="2xl" fontWeight="800" color={Theme.Colors.primaryText}>
-            Login
-          </Heading>
-
-          <VStack space={3} mt="5">
-            <FormControl isInvalid>
+      <Box safeArea p="2" pt={12} w="full" px={5}>
+        <Heading
+          size="2xl"
+          fontWeight="800"
+          color={Theme.Colors.primaryText}
+          textAlign="center"
+        >
+          Welcome Back
+        </Heading>
+        <Text
+          fontSize="sm"
+          color={Theme.Colors.secondaryText}
+          mt={2}
+          mb={8}
+          textAlign="center"
+        >
+          Log In to have the best{"\n"}banking experience
+        </Text>
+        <VStack space={3} mt="1">
+          <FormControl isInvalid={isFieldInError("username")}>
+            <FormControl.Label
+              _text={{
+                color: Theme.Colors.tertiaryText,
+                fontWeight: "medium",
+                fontSize: "sm",
+              }}
+            >
+              {" "}
+              Email
+            </FormControl.Label>
+            <Input
+              onChangeText={(text) => {
+                setUsername(text);
+                if (isBiometricEnabled && isEnabledBioAuth) {
+                  turnOffBiometric();
+                }
+              }}
+              value={username}
+              style={Shared.TextInput.default}
+              variant={"rounded"}
+            />
+            {isFieldInError("username") && (
+              <FormControl.ErrorMessage
+                leftIcon={<WarningOutlineIcon size="xs" />}
+              >
+                Email cannot be empty.
+              </FormControl.ErrorMessage>
+            )}
+          </FormControl>
+          {((!isBiometricEnabled && !isEnabledBioAuth) ||
+            failureCount > 2) && (
+            <FormControl isInvalid={isFieldInError("password")}>
               <FormControl.Label
                 _text={{
                   color: Theme.Colors.secondaryText,
@@ -251,164 +275,131 @@ const LoginScreen = ({ navigation }) => {
                   fontSize: "sm",
                 }}
               >
-                {" "}
-                Email
+                Password
               </FormControl.Label>
               <Input
                 onChangeText={(text) => {
-                  setUsername(text);
-                  if (isBiometricEnabled && isEnabledBioAuth) {
-                    turnOffBiometric();
-                  }
+                  setPassword(text);
                 }}
-                value={username}
+                value={password}
                 style={Shared.TextInput.default}
                 variant={"rounded"}
+                type={show ? "text" : "password"}
+                InputRightElement={
+                  <Button
+                    size="xs"
+                    _text={{ color: Theme.Colors.secondaryText }}
+                    variant={"ghost"}
+                    rounded="none"
+                    w="1/6"
+                    h="full"
+                    onPress={handleClick}
+                  >
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                }
               />
-              {isFieldInError("username") && (
+              {isFieldInError("password") && (
                 <FormControl.ErrorMessage
                   leftIcon={<WarningOutlineIcon size="xs" />}
                 >
-                  Email cannot be empty.
+                  Password cannot be empty
                 </FormControl.ErrorMessage>
               )}
             </FormControl>
-            {((!isBiometricEnabled && !isEnabledBioAuth) ||
-              failureCount > 2) && (
-              <FormControl isInvalid>
-                <FormControl.Label
-                  _text={{
-                    color: Theme.Colors.primaryText,
-                    fontWeight: "medium",
-                    fontSize: "sm",
-                  }}
-                >
-                  Password
-                </FormControl.Label>
-                <Input
-                  onChangeText={(text) => {
-                    setPassword(text);
-                  }}
-                  value={password}
-                  style={Shared.TextInput.default}
-                  variant={"rounded"}
-                  type={show ? "text" : "password"}
-                  InputRightElement={
-                    <Button
-                      size="xs"
-                      _text={{ color: Theme.Colors.secondaryText }}
-                      variant={"ghost"}
-                      rounded="none"
-                      w="1/6"
-                      h="full"
-                      onPress={handleClick}
-                    >
-                      {show ? "Hide" : "Show"}
-                    </Button>
-                  }
-                />
-                {isFieldInError("password") && (
-                  <FormControl.ErrorMessage
-                    leftIcon={<WarningOutlineIcon size="xs" />}
-                  >
-                    Password cannot be empty
-                  </FormControl.ErrorMessage>
-                )}
-              </FormControl>
-            )}
-            <HStack space={isBiometricEnabled ? 1 : 0}>
+          )}
+          <HStack space={isBiometricEnabled ? 1 : 0}>
+            <Button
+              isDisabled={
+                isBiometricEnabled && isEnabledBioAuth && !password?.length
+              }
+              isLoading={isLoading}
+              spinner={<LoadingSpinner />}
+              onPress={() => {
+                authenticate();
+              }}
+              mt={5}
+              variant={"solid"}
+              w={"full"}
+              style={{ ...Shared.Button.primary, flex: 1 }}
+            >
+              Log In
+            </Button>
+            {isBiometricEnabled && failureCount <= 2 && (
               <Button
-                isDisabled={
-                  isBiometricEnabled && isEnabledBioAuth && !password?.length
-                }
                 isLoading={isLoading}
-                spinner={<LoadingSpinner />}
                 onPress={() => {
-                  authenticate();
+                  setFailureCount(0);
+                  configureBiometricAuth();
                 }}
                 mt={5}
-                variant={"solid"}
+                variant={"ghost"}
                 w={"full"}
-                style={{ ...Shared.Button.primary, flex: 1 }}
+                style={{ width: 50, color: Theme.Colors.colorWhite }}
               >
-                Log In
+                <FingerprintWhite width={30} height={30} />
               </Button>
-              {isBiometricEnabled && failureCount <= 2 && (
-                <Button
-                  isLoading={isLoading}
-                  onPress={() => {
-                    setFailureCount(0);
-                    configureBiometricAuth();
-                  }}
-                  mt={5}
-                  variant={"ghost"}
-                  w={"full"}
-                  style={{ width: 50, color: Theme.Colors.colorWhite }}
-                >
-                  <FingerprintWhite width={30} height={30} />
-                </Button>
-              )}
-              {isBiometricEnabled && failureCount <= 2 && (
-                <Button
-                  isLoading={isLoading}
-                  onPress={() => {
-                    setFailureCount(Infinity);
-                    resetBiometric();
-                  }}
-                  mt={5}
-                  variant={"ghost"}
-                  w={"full"}
-                  style={{ width: 50, color: Theme.Colors.colorWhite }}
-                >
-                  <KeyWhite width={30} height={30} />
-                </Button>
-              )}
-            </HStack>
-
-            <HStack mt="6" justifyContent="center">
-              <Text fontSize="sm" color={Theme.Colors.secondaryText}>
-                I'm a new user.{" "}
-              </Text>
-              <Link
-                _text={{
-                  color: Theme.CustomTheme["color-active-button"],
-                  fontWeight: "medium",
-                  fontSize: "sm",
-                }}
-                onPress={() => navigation.navigate("SignUpScreen")}
-              >
-                Sign Up
-              </Link>
-            </HStack>
-            <Center>
-              <Link
-                _text={{
-                  fontSize: "sm",
-                  fontWeight: "500",
-                  color: Theme.CustomTheme["color-active-button"],
-                }}
+            )}
+            {isBiometricEnabled && failureCount <= 2 && (
+              <Button
+                isLoading={isLoading}
                 onPress={() => {
-                  navigation.navigate("ResetPasswordScreen");
+                  setFailureCount(Infinity);
+                  resetBiometric();
                 }}
-                mt="1"
+                mt={5}
+                variant={"ghost"}
+                w={"full"}
+                style={{ width: 50, color: Theme.Colors.colorWhite }}
               >
-                Forget Password?
-              </Link>
+                <KeyWhite width={30} height={30} />
+              </Button>
+            )}
+          </HStack>
+
+          <HStack mt="6" justifyContent="center">
+            <Text fontSize="sm" color={Theme.Colors.secondaryText}>
+              I'm a new user.{" "}
+            </Text>
+            <Link
+              _text={{
+                color: Theme.CustomTheme["color-active-button"],
+                fontWeight: "medium",
+                fontSize: "sm",
+              }}
+              onPress={() => navigation.navigate("SignUpScreen")}
+            >
+              Sign Up
+            </Link>
+          </HStack>
+          <Center>
+            <Link
+              _text={{
+                fontSize: "sm",
+                fontWeight: "500",
+                color: Theme.CustomTheme["color-active-button"],
+              }}
+              onPress={() => {
+                navigation.navigate("ResetPasswordScreen");
+              }}
+              mt="1"
+            >
+              Forget Password?
+            </Link>
+          </Center>
+        </VStack>
+        <VStack mt={2}>
+          <Box px={5}>
+            <Center>
+              <Text
+                style={{ color: Theme.Colors.secondaryText, fontSize: 10 }}
+              >
+                Build Version {version}-{sdkVersion}
+              </Text>
             </Center>
-          </VStack>
-          <VStack mt={2}>
-            <Box px={5}>
-              <Center>
-                <Text
-                  style={{ color: Theme.Colors.secondaryText, fontSize: 10 }}
-                >
-                  Build Version {version}-{sdkVersion}
-                </Text>
-              </Center>
-            </Box>
-          </VStack>
-        </Box>
-      </Center>
+          </Box>
+        </VStack>
+      </Box>
     </KeyboardAvoidingView>
   );
 };

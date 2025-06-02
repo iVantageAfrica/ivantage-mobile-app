@@ -130,11 +130,11 @@ const SavingsScreen = ({ navigation, route }) => {
                 <View key={item.objectId} style={{ marginRight: 5 }}>
                     <Image style={{ height: 130, width: 300, borderRadius: 10 }} resizeMode={'cover'} source={{ uri: item.images[0].url }} alt={item.name} />
                     <View style={{ position: 'absolute', width: '100%', bottom: 0, display: 'flex' }}>
-                      <LinearGradient style={{ flex: 1, paddingBottom: 8, paddingLeft: 8, paddingRight: 8 }} colors={['transparent', 'rgba(0,0,0,0.9)']}>
+                      {/* <LinearGradient style={{ flex: 1, paddingBottom: 8, paddingLeft: 8, paddingRight: 8 }} colors={['transparent', 'rgba(0,0,0,0.9)']}>
                             <Text style={{ color: '#ffffff', fontSize: 10 }}>{item.district}, {item.state}</Text>
                             <Text style={{ color: '#ffffff' }}>{item.name}</Text>
                             <Currency style={{ color: '#ffffff', fontSize: 12 }} value={item.price} />
-                     </LinearGradient>
+                     </LinearGradient> */}
                     </View>
                 </View></TouchableOpacity>
             )

@@ -2,35 +2,50 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native'
 import { VStack, Box, Image, Text, HStack } from 'native-base';
 import Theme from '../themes';
-const MoreItem = (props) => {
-    return (
-        <>
-            <HStack minH={60} mx={3} shadow={3} style={{ backgroundColor: props.isSelected? '#ffffff': Theme.Colors.backgroundColorAlt, borderRadius: 15 }} mb={5} space={1}>
-                {props.imgsrc && <Image m={3} size={35} borderRadius={100} source={{
-                    uri: props.imgsrc
-                }} alt="Alternate Text" />}
-                {props.imgIcon}
-                <VStack p={3}>
-                    <HStack w={'full'}>
-                        <Box w={'4/5'} >
-                        <VStack style={{justifyContent: 'space-between'}} >
-                            <TouchableOpacity onPress={props.onPress}>
-                            {props.title && <Box _text={{ color: props.isSelected?Theme.Colors.backgroundColor: '#ffffff', fontWeight: 'bold' }}>{props.title}</Box>}
-                            {props.subtitle && <Box>
-                                <Text style={{ color:props.isSelected? Theme.Colors.backgroundColor: '#ffffff' }}>{props.subtitle}</Text>
-                            </Box>}
-                            </TouchableOpacity>
-                        </VStack>
-                        </Box>
-                        {props.icon && 
-                        <Box pt={2} style={{position: 'absolute', right: 0}}>
-                            {props.icon}
-                        </Box>}
-                    </HStack>
-                    
-                </VStack>
-                
-            </HStack></>)
-}
+import { Icon } from 'native-base';
+import { FontAwesome } from '@expo/vector-icons';
 
-export default MoreItem
+const MoreItem = (props) => {
+    // Extract props with default values for better readability
+    const { 
+        imgsrc, 
+        imgIcon, 
+        title, 
+        subtitle, 
+        icon = <Icon size={5} color={'gray'} as={FontAwesome} name="chevron-right" />, // Default chevron icon
+        onPress 
+    } = props;
+
+    return (
+        <TouchableOpacity onPress={onPress} style={{ width: '100%' }}>
+            <HStack 
+                alignItems="center"
+                justifyContent="space-between"
+                py={3} // Vertical padding
+                px={4} // Horizontal padding
+                style={{
+                    backgroundColor: Theme.Colors.colorWhite, // Light background
+                    borderRadius: 10, // Rounded corners
+                }}
+            >
+                {/* Icon Section */}
+                <HStack alignItems="center"> // Removed space prop here
+                    {imgsrc && <Image size={50} borderRadius={100} source={{ uri: imgsrc }} alt="Alternate Text" style={{marginRight: 16}} />}
+                    {imgIcon && <Box style={{marginRight: 16}}>{imgIcon}</Box>} // Added marginRight to the Box around imgIcon
+
+                    {/* Text Section */}
+                    <VStack flex={1}> // Allow text to take available space
+                        {title && <Text fontSize="md" fontWeight="medium" color="#000000">{title}</Text>}
+                        {subtitle && <Text fontSize="sm" color="gray">{subtitle}</Text>}
+                    </VStack>
+                </HStack>
+
+                {/* Right Arrow Icon */}
+                <Box>{icon}</Box>
+
+            </HStack>
+        </TouchableOpacity>
+    );
+};
+
+export default MoreItem;
