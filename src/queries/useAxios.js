@@ -41,7 +41,6 @@ const createClient = (token, is_multi_part, deviceId) => {
     baseURL: baseUrl,
     headers,
   });
-  console.log("httpclient", baseUrl);
   return internalHttpClient;
 };
 
@@ -52,7 +51,7 @@ const computeActivityTimeDiff = async (navigation) => {
   }
   const currentTime = new Date().getTime();
   const idleTime = Math.ceil((currentTime - lastRequestTime) / 1000);
-  if (idleTime > 180) {
+  if (idleTime > 500) {
     if (navigation) {
       await MSStorage.setItem("last_network_activity_time", null);
       navigation.reset({
@@ -77,7 +76,6 @@ const useAxios = ({
     await computeActivityTimeDiff(navigation);
     const token = await MSStorage.getItem("token");
     const deviceSignature = await getDeviceId();
-    //console.log("request url", url);
     return createClient(token, is_multi_part, deviceSignature)
       [method](url, stringify ? JSON.stringify(body) : body, headers)
       .catch((error) => {

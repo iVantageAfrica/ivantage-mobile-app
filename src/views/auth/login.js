@@ -4,6 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useValidation } from "react-native-form-validator";
 import styles from "./styles";
 import Theme from "../../themes";
+import Loader from "../../components/loader";
 import Shared from "../../themes/shared";
 import { useUser } from "../../context/usercontext";
 import { useAuthentication } from "../../queries/useAuthentication";
@@ -314,7 +315,7 @@ const LoginScreen = ({ navigation }) => {
                 isBiometricEnabled && isEnabledBioAuth && !password?.length
               }
               isLoading={isLoading}
-              spinner={<LoadingSpinner />}
+              spinner={<Loader size="sm" fullscreen={false} />}
               onPress={() => {
                 authenticate();
               }}

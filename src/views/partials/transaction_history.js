@@ -59,7 +59,7 @@ const AccountHistoryView = ({ navigation, accountNo, fromDate, toDate }) => {
     }
 
     const renderItem = ({ item, index }) => {
-        return <TransactionItem navigation={navigation} transaction={item} key={index} is_credit={item.transactionType == 'C'} amount={<Currency value={item.amount} />} title={`${item.refAccountNo} - ${item.transactionNarration}`} subtitle={utils.toHumanDate(item.transactionDate)} w={'full'} mb={2} style={{ backgroundColor: '#415367' }} />
+        return <TransactionItem navigation={navigation} transaction={item} key={index} is_credit={item.transactionType == 'C'} amount={<Currency value={item.amount} />}  title={`${item.refAccountNo} - ${item.transactionNarration}`} subtitle={utils.toHumanDate(item.transactionDate)} w={'full'} mb={2} style={{ backgroundColor: Theme.Colors.colorGrey }} />
     }
 
     if (!isLoading && (!transactions || transactions.length == 0)) {

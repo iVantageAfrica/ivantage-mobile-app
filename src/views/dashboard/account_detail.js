@@ -210,7 +210,7 @@ const AccountDetailScreen = ({ navigation, route }) => {
                                         <Box mb={2} alignItems={'center'}>
                                             <PaymentHistory marginTop={20} width={100} height={40} />
                                         </Box>
-                                        <Text style={{ color: '#ffffff', textAlign: 'center' }}>Transaction History</Text>
+                                        <Text style={{ color:  Theme.Colors.primaryText, textAlign: 'center' }}>Transaction History</Text>
                                     </TouchableOpacity>
                                 </Box>
                             </HStack>

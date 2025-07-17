@@ -1,52 +1,35 @@
-import React, { useEffect } from "react";
-import { View, Animated, Easing, StyleSheet, Dimensions, Text } from "react-native";
+import React from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
 import Theme from '../themes';
 import { Spinner } from "native-base";
 
 const Loader = props => {
-    const { height = 70, width = 135 } = props;
+    const { height = 70, width = 135, size, fullscreen = true, style } = props;
 
-    // Remove unused animation code
-    // const spinValue = new Animated.Value(0);
+    // Determine spinner size
+    let spinnerSize = size;
+    if (!spinnerSize) {
+        if (height <= 30 || width <= 30) {
+            spinnerSize = 'sm';
+        } else if (height <= 50 || width <= 50) {
+            spinnerSize = 'md';
+        } else {
+            spinnerSize = 'lg';
+        }
+    }
 
-    // useEffect(() => {
-    //     Animated.loop(
-    //         Animated.timing(
-    //             spinValue,
-    //             {
-    //                 toValue: 1,
-    //                 duration: 1000,
-    //                 easing: Easing.linear,
-    //                 useNativeDriver: true 
-    //             }
-    //         )
-    //     ).start();
-    // }, [spinValue])
+    const spinner = (
+        <Spinner size={spinnerSize} color={Theme.Colors.primaryText} />
+    );
 
-    // const spin = spinValue.interpolate({
-    //     inputRange: [0, 1],
-    //     outputRange: ['0deg', '360deg']
-    // })
-
-    // Determine spinner size based on height/width props or use a default
-    let spinnerSize = 'lg'; // Default size
-    if (height <= 30 || width <= 30) {
-        spinnerSize = 'sm';
-    } else if (height <= 50 || width <= 50) {
-        spinnerSize = 'md';
+    if (!fullscreen) {
+        // Just render the spinner, no overlay
+        return <View style={style}>{spinner}</View>;
     }
 
     return (
-        <View style={styles.container}>
-            <View>
-                {/* Replace Animated.Image with Spinner */}
-                <Spinner size={spinnerSize} color={Theme.Colors.primaryText} />
-                {/* <Animated.Image
-                    style={{
-                        resizeMode: 'contain', height, width, transform: [{ rotate: spin }]
-                    }}
-                    source={Theme.Images.appicon} /> */}
-            </View>
+        <View style={[styles.container, style]}>
+            {spinner}
         </View>
     );
 };

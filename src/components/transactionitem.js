@@ -16,12 +16,12 @@ const TransactionItem = (props) => {
                         uri: "https://wallpaperaccess.com/full/317501.jpg"
                     }} alt="Alternate Text" />
                     <VStack w={'3/6'}>
-                        <Box _text={{ color: '#ffffff', fontWeight: 'bold', fontSize: 13 }}>{props.title ?? props.title}</Box>
-                        <Box _text={{ color: '#ffffff', fontSize: 9 }}>{props.subtitle ?? props.subtitle}</Box>
+                        <Box _text={{ color:Theme.Colors.tertiaryText, fontWeight: 'bold', fontSize: 13 }}>{props.title ?? props.title}</Box>
+                        <Box _text={{ color:Theme.Colors.tertiaryText, fontSize: 9 }}>{props.subtitle ?? props.subtitle}</Box>
                     </VStack>
                     <Box w={'2/6'} pt={3}>
                         <Box>
-                            <Text style={{ color: '#ffffff', fontWeight: 'bold', color: props.is_credit ? '#00b94a' : '#e54b47' }}>{props.amount ?? props.amount}</Text>
+                            <Text style={{ color:Theme.Colors.tertiaryText, fontWeight: 'bold', color: props.is_credit ? '#00b94a' : '#e54b47' }}>{props.amount ?? props.amount}</Text>
                         </Box>
                     </Box>
                 </HStack>
@@ -40,12 +40,12 @@ const TransactionItem = (props) => {
                                 uri: "https://wallpaperaccess.com/full/317501.jpg"
                             }} alt="Alternate Text" />
                             <Box flex={1}>
-                                <Box _text={{ color: '#ffffff', fontWeight: 'bold', fontSize: 13 }}>{props.title ?? props.title}</Box>
-                                <Box _text={{ color: '#ffffff', fontSize: 9 }}>{props.subtitle ?? props.subtitle}</Box>
+                                <Box _text={{ color:Theme.Colors.tertiaryText, fontWeight: 'bold', fontSize: 13 }}>{props.title ?? props.title}</Box>
+                                <Box _text={{ color:Theme.Colors.tertiaryText, fontSize: 9 }}>{props.subtitle ?? props.subtitle}</Box>
                             </Box>
                         </Flex>
                     </Box>
-                    <Box mx={3} pr={3} flex={1}><Text textAlign={'right'} style={{ color: '#ffffff', fontWeight: 'bold', color: props.is_credit ? '#00b94a' : '#fcb077' }}>{props.amount ?? props.amount}</Text></Box>
+                    <Box mx={3} pr={3} flex={1}><Text textAlign={'right'} style={{ color:Theme.Colors.tertiaryText, fontWeight: 'bold', color: props.is_credit ?  Theme.Colors.tertiaryText :  Theme.Colors.tertiaryText }}>{props.amount ?? props.amount}</Text></Box>
                 </Flex>
                 </Pressable>
         </Box>

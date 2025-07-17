@@ -40,8 +40,8 @@ const BillsScreen = ({ navigation, route }) => {
 
     const renderItem = ({ item, index }) => {
         return <MoreItem 
-        imgIcon={<Image mb={3} mt={3} ml={7} width={35} resizeMode="contain" source={Theme.Icons.change_pin} alt={'partial'} />}
-        key={item.id} onPress={() => navigation.navigate('bills.billers', item)} title={item.name}  icon={<Icon size={5} color={'#ffffff'} as={FontAwesome} name="chevron-right" />} />
+        imgIcon={<Image mb={3} mt={3} ml={5} width={35} resizeMode="contain" source={Theme.Icons.change_pin} alt={'partial'} />}
+        key={item.id} onPress={() => navigation.navigate('bills.billers', item)} title={item.name}  icon={<Icon size={5} color={Theme.Colors.colorGrey} as={FontAwesome} name="chevron-right" />} />
     }
 
     if(isLoading) {
@@ -51,7 +51,7 @@ const BillsScreen = ({ navigation, route }) => {
     return (
         <VStack style={styles.container}>
             <Box ml={3} mb={3}>
-                <Heading px={2} mt={3} fontWeight="600" color="#ffffff" >
+                <Heading px={2} mt={3} fontWeight="600" color={Theme.Colors.primaryText} >
                     Services
                 </Heading>
             </Box>

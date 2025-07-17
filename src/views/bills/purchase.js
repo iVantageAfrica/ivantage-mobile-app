@@ -172,7 +172,7 @@ const PurchaseScreen = ({ navigation, route }) => {
   return (
     <VStack style={styles.container}>
       <Box ml={3} mb={3}>
-        <Heading px={2} mt={3} fontWeight="600" color="#ffffff">
+        <Heading px={2} mt={3} fontWeight="600" color={Theme.Colors.tertiaryText}>
           {product.name}
         </Heading>
       </Box>
@@ -180,7 +180,7 @@ const PurchaseScreen = ({ navigation, route }) => {
         <FormControl isRequired>
           <FormControl.Label
             _text={{
-              color: "#ffffff",
+              color: Theme.Colors.tertiaryText,
               fontWeight: "medium",
               fontSize: "sm",
             }}
@@ -216,7 +216,7 @@ const PurchaseScreen = ({ navigation, route }) => {
         <FormControl isRequired>
           <FormControl.Label
             _text={{
-              color: "#ffffff",
+              color: Theme.Colors.tertiaryText,
               fontWeight: "medium",
               fontSize: "sm",
             }}
@@ -230,7 +230,7 @@ const PurchaseScreen = ({ navigation, route }) => {
             }}
             value={account}
             placeholder={"Select Account"}
-            bgColor={"#ffffff"}
+            bgColor={Theme.Colors.backgroundColor}
             borderRadius={20}
             style={{ ...Shared.Select.default }}
             variant={"rounded"}
@@ -258,7 +258,7 @@ const PurchaseScreen = ({ navigation, route }) => {
         <FormControl isRequired>
           <FormControl.Label
             _text={{
-              color: "#ffffff",
+              color: Theme.Colors.tertiaryText,
               fontWeight: "medium",
               fontSize: "sm",
             }}

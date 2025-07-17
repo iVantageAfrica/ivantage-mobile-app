@@ -11,15 +11,10 @@ import OTPInput from "../../components/otp";
 import {
   Box,
   VStack,
-  HStack,
   Center,
-  FormControl,
   Link,
-  WarningOutlineIcon,
-  Input,
   Button,
   Heading,
-  Image,
   Text,
   KeyboardAvoidingView,
 } from "native-base";

@@ -105,7 +105,7 @@ const CardRequestScreen = ({ navigation, route }) => {
         <VStack style={styles.container}>
             <Box px={2}>
                 <Box ml={3} mb={5}>
-                    <Heading mt={5} size="xl" fontWeight="800" color="#ffffff" >
+                    <Heading mt={5} size="xl" fontWeight="800" color={Theme.Colors.tertiaryText} >
                         Card Request
                     </Heading>
                 </Box>
@@ -113,7 +113,7 @@ const CardRequestScreen = ({ navigation, route }) => {
                     <VStack space={2}>
                         <FormControl isRequired>
                             <FormControl.Label type={'Email'} _text={{
-                                color: "#ffffff",
+                                color: Theme.Colors.tertiaryText,
                                 fontWeight: "medium",
                                 fontSize: "sm"
                             }}>Account To Link Card</FormControl.Label>
@@ -125,40 +125,40 @@ const CardRequestScreen = ({ navigation, route }) => {
                             {!toaccount && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
                                 Account not selected
                             </FormControl.ErrorMessage>}
-                            <Text style={{ fontSize: 11, color: '#ffffff' }}>The requested card will be linked to this selected account.</Text>
+                            <Text style={{ fontSize: 11, color: Theme.Colors.tertiaryText }}>The requested card will be linked to this selected account.</Text>
                         </FormControl>
                     </VStack>
                     <VStack space={2}>
                         <FormControl isRequired>
                             <FormControl.Label type={'Email'} _text={{
-                                color: "#ffffff",
+                                color: Theme.Colors.tertiaryText,
                                 fontWeight: "medium",
                                 fontSize: "sm"
                             }}>Account To Debit</FormControl.Label>
                             <Select w={'full'} onValueChange={(v) => {
                                 setAccount(v)
-                            }} value={account} placeholder={'Select Account'} bgColor={'#ffffff'} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
+                            }} value={account} placeholder={'Select Account'} bgColor={Theme.Colors.backgroundColor} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
                                 {myaccounts && myaccounts.map(y => <Select.Item key={y.objectId} label={getDropItemLabel(y)} value={y.account_info.AccountNo} />)}
                             </Select>
                             {!account && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
                                 Account not selected
                             </FormControl.ErrorMessage>}
-                            <Text style={{ fontSize: 11, color: '#ffffff' }}>This selected account will be debited for this request.</Text>
+                            <Text style={{ fontSize: 11, color: Theme.Colors.tertiaryText }}>This selected account will be debited for this request.</Text>
                         </FormControl>
                     </VStack>
                     <VStack space={2}>
-                        <Text style={{ color: '#e9e9e9', fontSize: 13 }}>Pickup Branch</Text>
+                        <Text style={{ color: Theme.Colors.tertiaryText, fontSize: 13 }}>Pickup Branch</Text>
                         <Select w={'full'} onValueChange={(v) => {
                                setPickUpBranch(v)
-                            }} value={pickupbranch} placeholder={'Select Pickup Branch'} bgColor={'#ffffff'} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
+                            }} value={pickupbranch} placeholder={'Select Pickup Branch'} bgColor={Theme.Colors.backgroundColor} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
                                 { ['Lagos Branch', 'Abuja Branch'].map(y => <Select.Item key={y} label={y} value={y} />)}
                             </Select>
                     </VStack>
                     <VStack space={2}>
-                        <Text style={{ color: '#e9e9e9', fontSize: 13 }}>Reason  / Comment</Text>
+                        <Text style={{ color: Theme.Colors.tertiaryText, fontSize: 13 }}>Reason  / Comment</Text>
                         <Select w={'full'} onValueChange={(v) => {
                                setComment(v)
-                            }} value={comment} placeholder={'Select Reason'} bgColor={'#ffffff'} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
+                            }} value={comment} placeholder={'Select Reason'} bgColor={Theme.Colors.backgroundColor} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
                                 {reasons && reasons.map(y => <Select.Item key={y} label={y} value={y} />)}
                             </Select>
                     </VStack>

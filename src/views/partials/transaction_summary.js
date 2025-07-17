@@ -1,13 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { View } from 'react-native';
-import styles from './styles'
 import Theme from '../../themes';
 import Shared from '../../themes/shared';
-import Constants from 'expo-constants';
-
-import { Icon } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
-
 import Currency from '../../components/currency'
 
 import { Box, VStack, HStack, Button, Heading, Image, Text, Link, Center } from "native-base";
@@ -57,31 +50,31 @@ const TransactionSummary = (props) => {
     if(!is_detail) {
         return (
             <VStack >
-               <Box p={3} style={{borderStyle:'dashed', borderWidth: 1, borderColor:'#ffffff', backgroundColor: Theme.Colors.backgroundColorAlt}}>
+               <Box p={3} style={{borderStyle:'dashed', borderWidth: 1, borderColor:Theme.Colors.borderColor, backgroundColor: Theme.Colors.backgroundColorAlt}}>
                     <VStack space={3}>
                         <Box>
-                            <Text color={'#ffffff'}>Recipient Account No</Text>
-                            <Text bold={'bold'} color={'#ffffff'} >{transaction.accountNumber}</Text>
+                            <Text color={Theme.Colors.primaryText}>Recipient Account No</Text>
+                            <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.accountNumber}</Text>
                         </Box>
                         <Box>
-                            <Text color={'#ffffff'}>Recipient Name</Text>
-                            <Text bold={'bold'} color={'#ffffff'} >{transaction.recipientsName}</Text>
+                            <Text color={Theme.Colors.primaryText}>Recipient Name</Text>
+                            <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.recipientsName}</Text>
                         </Box>
                         <Box>
-                            <Text color={'#ffffff'}>Recipient Bank Name</Text>
-                            <Text bold={'bold'} color={'#ffffff'} >{transaction.recipientsBankName}</Text>
+                            <Text color={Theme.Colors.primaryText}>Recipient Bank Name</Text>
+                            <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.recipientsBankName}</Text>
                         </Box>
                         <Box>
-                            <Text color={'#ffffff'}>Amount</Text>
-                            <Currency bold={'bold'} color={'#ffffff'} value={transaction.amount} />
+                            <Text color={Theme.Colors.primaryText}>Amount</Text>
+                            <Currency bold={'bold'} color={Theme.Colors.tertiaryText} value={transaction.amount} />
                         </Box>
                         <Box>
-                            <Text color={'#ffffff'}>Narration</Text>
-                            <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionNarration}</Text>
+                            <Text color={Theme.Colors.primaryText}>Narration</Text>
+                            <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionNarration}</Text>
                         </Box>
                         {transaction.transactionReference && <Box>
-                            <Text color={'#ffffff'}>Transaction Reference</Text>
-                            <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionReference}</Text>
+                            <Text color={Theme.Colors.primaryText}>Transaction Reference</Text>
+                            <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionReference}</Text>
                         </Box>}
                     </VStack>
                 </Box>
@@ -93,7 +86,7 @@ const TransactionSummary = (props) => {
     return (
         <>
         <VStack  ref={imageRef} collapsable={false}>
-           <Box p={3} style={{borderStyle:'dashed', borderWidth: 1, borderColor:'#ffffff', backgroundColor: Theme.Colors.backgroundColorAlt}}>
+           <Box p={3} style={{borderStyle:'dashed', borderWidth: 1, borderColor:Theme.Colors.borderColor, backgroundColor: Theme.Colors.backgroundColorAlt}}>
                 <VStack space={3}>
                     <Center>
                         <Image 
@@ -103,65 +96,65 @@ const TransactionSummary = (props) => {
                          alt='Logo' source={Theme.Images.appicon} />
                     </Center>
                     <Box>
-                        <Text color={'#ffffff'}>Ref. Number</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionType == 'D' ?  transaction.accountNumber : transaction.refAccountNo}</Text>
+                        <Text color={Theme.Colors.primaryText}>Ref. Number</Text>
+                        <Text  color={Theme.Colors.tertiaryText}>{transaction.transactionType == 'D' ?  transaction.accountNumber : transaction.refAccountNo}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Transaction ID</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionReference}</Text>
+                        <Text color={Theme.Colors.primaryText}>Transaction ID</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionReference}</Text>
                     </Box>
                     {transaction.transactionReferenceNumber && <Box>
-                        <Text color={'#ffffff'}>Transaction No</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionReferenceNumber}</Text>
+                        <Text color={Theme.Colors.primaryText}>Transaction No</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionReferenceNumber}</Text>
                     </Box>}
                     <Box>
-                        <Text color={'#ffffff'}>Recipient Acct No</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.transactionType == 'D' ? transaction.refAccountNo:  transaction.accountNumber}</Text>
+                        <Text color={Theme.Colors.primaryText}>Recipient Acct No</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.transactionType == 'D' ? transaction.refAccountNo:  transaction.accountNumber}</Text>
                     </Box>
                     {transaction.transactionType == 'D' && <VStack space={3}>
                     <Box>
-                        <Text color={'#ffffff'}>Recipient Name</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.recipientsName}</Text>
+                        <Text color={Theme.Colors.primaryText}>Recipient Name</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.recipientsName}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Recipient Bank Name</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.recipientsBankName}</Text>
+                        <Text color={Theme.Colors.primaryText}>Recipient Bank Name</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.recipientsBankName}</Text>
                     </Box>
                     </VStack>}
                     {transaction.transactionType == 'C' && <VStack space={3}>
                     <Box>
-                        <Text color={'#ffffff'}>Sender's Account Number</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.fromAccountNo ? transaction.fromAccountNo : 'N/A'}</Text>
+                        <Text color={Theme.Colors.primaryText}>Sender's Account Number</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.fromAccountNo ? transaction.fromAccountNo : 'N/A'}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Sender's Name</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.fromCustomer ? transaction.fromCustomer : 'N/A'}</Text>
+                        <Text color={Theme.Colors.primaryText}>Sender's Name</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.fromCustomer ? transaction.fromCustomer : 'N/A'}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Sender's Bank Name</Text>
-                        <Text bold={'bold'} color={'#ffffff'} >{transaction.fromBank ? transaction.fromBank : 'N/A'}</Text>
+                        <Text color={Theme.Colors.primaryText}>Sender's Bank Name</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText} >{transaction.fromBank ? transaction.fromBank : 'N/A'}</Text>
                     </Box>
                     </VStack>}
                     
                     <Box>
-                        <Text color={'#ffffff'}>Amount</Text>
-                        <Currency bold={'bold'} color={'#ffffff'} value={transaction.amount} />
+                        <Text color={Theme.Colors.primaryText}>Amount</Text>
+                        <Currency bold={'bold'} color={Theme.Colors.tertiaryText} value={transaction.amount} />
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Narration</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionNarration}</Text>
+                        <Text color={Theme.Colors.primaryText}>Narration</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionNarration}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Status</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transStatusDesc}</Text>
+                        <Text color={Theme.Colors.primaryText}>Status</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transStatusDesc}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Transaction Type</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionType == 'D' ? 'DEBIT': 'CREDIT'}</Text>
+                        <Text color={Theme.Colors.primaryText}>Transaction Type</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionType == 'D' ? 'DEBIT': 'CREDIT'}</Text>
                     </Box>
                     <Box>
-                        <Text color={'#ffffff'}>Date</Text>
-                        <Text bold={'bold'} color={'#ffffff'}>{transaction.transactionDate}</Text>
+                        <Text color={Theme.Colors.primaryText}>Date</Text>
+                        <Text bold={'bold'} color={Theme.Colors.tertiaryText}>{transaction.transactionDate}</Text>
                     </Box>
                 </VStack>
             </Box>

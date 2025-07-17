@@ -12,6 +12,8 @@ const Colors = {
   tertiaryText: "#0D0D0D7A",
   colorBlack: "#000000",
   colorWhite: "#ffffff",
+  colorTextBold: "#0D0D0D",
+  colorTextBold88: "#007bffE0",
   colorGrey: "#F8F8F8",
   tertiaryTextColor: "#0D0D0DE0",
   profileBackgroundColor: "#F8F8F8",
