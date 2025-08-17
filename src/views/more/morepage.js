@@ -11,7 +11,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { Box, VStack, HStack, Button, Heading, Image, Text, Link, Checkbox } from "native-base";
 
-import MoreItem from '../../components/98item'
+import MoreItem from '../../components/moreitem'
 
 import { useUser } from '../../context/usercontext'
 import { MSStorage } from '../../common/storage';

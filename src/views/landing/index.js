@@ -7,23 +7,31 @@ import { Box, VStack, HStack, Button, Heading, Image, Text } from "native-base";
 import AppIntroSlider from "react-native-app-intro-slider";
 
 const RenderItem = ({ item }) => {
-  return (
-    <Box safeArea flex={1} justifyContent="center" alignItems="center" px={4}>
-      <Image
-        width="85%"
-        height="300"
-        resizeMode="contain"
-        alt={item.title}
-        source={item.image}
-      />
-      <Text mt={6} fontSize={22} fontWeight="bold" color={Theme.Colors.colorTextBold} textAlign="center">
-        {item.title}
-      </Text>
-      <Text mt={2} fontSize={16} color={Theme.Colors.colorTextBold} textAlign="center">
-        {item.description}
-      </Text>
-    </Box>
-  );
+  try {
+    return (
+      <Box safeArea flex={1} justifyContent="center" alignItems="center" px={4}>
+        <Image
+          width="85%"
+          height="300"
+          resizeMode="contain"
+          alt={item.title}
+          source={item.image}
+        />
+        <Text mt={6} fontSize={22} fontWeight="bold" color={Theme.Colors?.colorTextBold || "#000000"} textAlign="center">
+          {item.title}
+        </Text>
+        <Text mt={2} fontSize={16} color={Theme.Colors?.colorTextBold || "#000000"} textAlign="center">
+          {item.description}
+        </Text>
+      </Box>
+    );
+  } catch (error) {
+    return (
+      <Box safeArea flex={1} justifyContent="center" alignItems="center" px={4}>
+        <Text>Loading...</Text>
+      </Box>
+    );
+  }
 };
 
 const Landing = ({ navigation }) => {
