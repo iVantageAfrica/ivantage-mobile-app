@@ -22,19 +22,19 @@ const MoreItem = (props) => {
                 alignItems="center"
                 justifyContent="space-between"
                 py={3} // Vertical padding
-                px={4} // Horizontal padding
+                px={2} // Horizontal padding
                 style={{
                     backgroundColor: Theme.Colors.colorWhite, // Light background
                     borderRadius: 10, // Rounded corners
                 }}
             >
                 {/* Icon Section */}
-                <HStack alignItems="center"> // Removed space prop here
+                <HStack alignItems="center"> 
                     {imgsrc && <Image size={50} borderRadius={100} source={{ uri: imgsrc }} alt="Alternate Text" style={{marginRight: 16}} />}
-                    {imgIcon && <Box style={{marginRight: 16}}>{imgIcon}</Box>} // Added marginRight to the Box around imgIcon
+                    {imgIcon && <Box style={{marginRight: 16}}>{imgIcon}</Box>} 
 
                     {/* Text Section */}
-                    <VStack flex={1}> // Allow text to take available space
+                    <VStack flex={1}> 
                         {title && <Text fontSize="md" fontWeight="medium" color="#000000">{title}</Text>}
                         {subtitle && <Text fontSize="sm" color="gray">{subtitle}</Text>}
                     </VStack>

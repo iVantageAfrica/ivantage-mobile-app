@@ -1,8 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { Platform } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native'
-import styles from './styles'
-import Theme from '../../themes';
+import Theme from "../../themes";
 import Shared from '../../themes/shared';
 import { useAuthentication } from "../../queries/useAuthentication";
 import AlertBox from "../../components/alertbox";
@@ -115,8 +112,6 @@ const TransferOTPScreen = ({ navigation, route }) => {
         return null
     }
 
-
-
     return (
             <>
             <ScrollView h={'full'}  >
@@ -124,10 +119,10 @@ const TransferOTPScreen = ({ navigation, route }) => {
                     <Box mb={10} >
                         <TransactionSummary transaction={getTransaction()} is_detail={false} />
                     </Box>
-                    <Heading size="xl" fontWeight="800" color="#ffffff" >
+                    <Heading size="xl" fontWeight="800" color={Theme.Colors.primaryText} >
                         Enter your PIN?
                     </Heading>
-                    <Text style={{ color: '#ffffff' }}>Enter your transaction PIN to complete this transaction.</Text>
+                    <Text style={{ color: '#0D0D0D7A' }}>Enter your transaction PIN to complete this transaction.</Text>
                     <VStack space={3} mt="5">
                         <FormControl isInvalid>
                             <Center>

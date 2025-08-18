@@ -94,7 +94,7 @@ const TransferLimitScreen = ({ navigation, route }) => {
                 <VStack  >
                     <Box px={3} >
                         <Box ml={3}>
-                            <Heading mt={20} size="xl" fontWeight="800" color="#ffffff" >
+                            <Heading mt={20} size="xl" fontWeight="800" color={Theme.Colors.colorTextBold} >
                                 Transfer Limit
                             </Heading>
                         </Box>
@@ -110,7 +110,7 @@ const TransferLimitScreen = ({ navigation, route }) => {
                                         <FormControl.Label
                                             type={"Email"}
                                             _text={{
-                                                color: "#ffffff",
+                                                color: "#14BAB0",
                                                 fontWeight: "medium",
                                                 fontSize: "sm",
                                             }}

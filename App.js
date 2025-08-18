@@ -42,14 +42,14 @@ export default function App() {
         SplashScreen.preventAutoHideAsync();
         await cacheFonts([FontAwesome.font])
       } catch (error) {
-        
+        console.error('Error loading fonts:', error);
       } finally {
         SplashScreen.hideAsync()
         setAppIsReady(true)
       }
     }
     loadResourcesAndDataAsync()
-  })
+  }, [])
   
   if (!appIsReady) {
     return null;

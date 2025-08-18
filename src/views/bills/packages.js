@@ -58,7 +58,7 @@ const PackagesScreen = ({ navigation, route }) => {
     return (
         <VStack style={styles.container}>
             <Box ml={3} mb={3}>
-                <Heading px={2} mt={3} fontWeight="600" color="#ffffff" >
+                <Heading px={2} mt={3} fontWeight="600" color={Theme.Colors.tertiaryText} >
                     Services
                 </Heading>
             </Box>

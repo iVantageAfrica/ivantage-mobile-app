@@ -121,13 +121,13 @@ const TransactionHistoryScreen = ({ navigation, route }) => {
                 <Box w={'5/6'}>
                     <FormControl isRequired>
                         <FormControl.Label type={'Email'} _text={{
-                            color: "#ffffff",
+                            color: Theme.Colors.tertiaryText,
                             fontWeight: "medium",
                             fontSize: "sm"
                         }}>Select Account</FormControl.Label>
                         <Select w={'full'} onValueChange={(v) => {
                             setSelectedAccount(v)
-                        }} placeholder={'Select Account'} bgColor={'#ffffff'} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
+                        }} placeholder={'Select Account'} bgColor={ Theme.Colors.backgroundColor} borderRadius={20} style={{ ...Shared.Select.default }} variant={'rounded'}>
                             {myaccounts && myaccounts.map(y => <Select.Item key={y.objectId} isDisabled={y.account_info.AccountStatus == 'PENDING'} label={getDropItemLabel(y)} value={y.account_info.AccountNo} />)}
                         </Select>
                     </FormControl>
@@ -138,18 +138,18 @@ const TransactionHistoryScreen = ({ navigation, route }) => {
             </HStack>
 
         </VStack>}
-        <VStack mt={2} mx={2} style={{ borderBottomWidth: 1, borderBottomColor: '#000000' }}>
+        <VStack mt={2} mx={2} style={{ borderBottomWidth: 1, borderBottomColor: Theme.Colors.borderBottomColor }}>
             <HStack mb={2} justifyContent={'space-between'}>
                 <Button mr={1} ml={1} variant={'ghost'} onPress={() => showDatepicker('from')}>
                     <HStack space={1}>
                         <Icon color="white" as={<FontAwesome name={'calendar'} />} size="sm" />
-                        <Text style={{ color: '#ffffff' }}>From: {fromdate.toDateString()}</Text>
+                        <Text style={{ color: Theme.Colors.tertiaryText }}>From: {fromdate.toDateString()}</Text>
                     </HStack>
                 </Button>
                 <Button mr={1} variant={'ghost'} onPress={() => showDatepicker('to')}>
                     <HStack space={1}>
                         <Icon color="white" as={<FontAwesome name={'calendar'} />} size="sm" />
-                        <Text style={{ color: '#ffffff' }}>To: {todate.toDateString()}</Text>
+                        <Text style={{ color:  Theme.Colors.tertiaryText }}>To: {todate.toDateString()}</Text>
                     </HStack>
                 </Button>
             </HStack>

@@ -3,7 +3,8 @@ import { getAppConfig } from '../common/device'
 
 
 const Theme = () => {
-    const org = getAppConfig().client_slug
+    const config = getAppConfig();
+    const org = config?.client_slug || 'ivantage';
     if(org == 'ivantage') {
         return Ivantage
     }

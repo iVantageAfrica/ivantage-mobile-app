@@ -240,8 +240,8 @@ function SavingsNav() {
             },
         })} >
             <SavingScreenStack.Screen name='savings_home' options={{ headerShown: false }} component={SavingsTab} />
-            <SavingScreenStack.Screen name='savings_tranfers' options={defaultPageHeader('Transfer Menu')} component={TransferHomeScreen} />
-            {/* <SavingScreenStack.Screen name='savings_tranfers_menu' options={defaultPageHeader('Transfer Menu')} component={TransferMenuScreen} />
+            <SavingScreenStack.Screen name='savings_tranfers' options={defaultPageHeader('Transfer Funds')} component={TransferHomeScreen} />
+            {/* <SavingScreenStack.Screen name='savings_tranfers_menu' options={defaultPageHeader('Transfer Funds')} component={TransferMenuScreen} />
             <SavingScreenStack.Screen name='savings_tranfers_to_own_acct' options={defaultPageHeader('Own Account Transfer')} component={TransferToOwnAcctScreen} />
             <SavingScreenStack.Screen name='savings_tranfers_to_other_acct' options={defaultPageHeader('Other Account Transfer')} component={TransferToOtherAcctScreen} />
             <SavingScreenStack.Screen name='manage_beneficiaries' options={defaultPageHeader('Manage Beneficiaries')} component={BeneficiariesScreen} />
@@ -320,7 +320,7 @@ function Routes() {
             <Stack.Screen name="FeedbackScreen" component={FeedbackScreen} options={defaultPageHeader('Enquiries & Complaints')} />
             <Stack.Screen name="BVNValidationScreen" options={defaultPageHeader('BVN Verification')} component={BVNValidationScreen} />
 
-            <Stack.Screen name='savings_tranfers_menu' options={defaultPageHeader('Transfer Menu')} component={TransferMenuScreen} />
+            <Stack.Screen name='savings_tranfers_menu' options={defaultPageHeader('Transfer Funds')} component={TransferMenuScreen} />
             <Stack.Screen name='savings_tranfers_to_own_acct' options={defaultPageHeader('Own Account Transfer')} component={TransferToOwnAcctScreen} />
             <Stack.Screen name='savings_tranfers_to_other_acct' options={defaultPageHeader('Other Account Transfer')} component={TransferToOtherAcctScreen} />
             <Stack.Screen name='manage_beneficiaries' options={defaultPageHeader('Manage Beneficiaries')} component={BeneficiariesScreen} />
